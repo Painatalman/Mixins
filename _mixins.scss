@@ -1,0 +1,567 @@
+/*
+ * Mixins
+ * ======
+ *
+ * General-purpose Mixins to be
+ * used with other SASS/scss files
+ *
+ *
+ *
+ */
+
+
+/**
+ * Removes default bullet and padding from a list (to be used in ul elements)
+ */
+@mixin list-reset {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+/*
+
+##
+
+#### PRE
+
++ must be applied to an element that contains uls and lis
+
+ */
+
+/**
+ * Colored bullet lists INSIDE a specific div/container/section/whatever
+ * @param  {color} $color:        tomato        Default bullet color
+ * @param  {unit} $padding-left: 20px          Default padding for li items
+ * @param  {string} $bullet-icon:  '2022'        Bullet icon character
+ * @return {css}                set of rules for the ul and li tags
+ */
+@mixin colored-bullet-lists($color: tomato, $padding-left: 20px, $bullet-icon: '\2022') {
+  ul {
+    list-style-type: none;
+    padding-left: $padding-left;
+  }
+  li {
+    // padding-bottom: 10px;
+    &::before {
+      content: $bullet-icon;
+      display: block;
+      position: relative;
+      max-width: 0;
+      max-height: 0;
+      left: -$padding-left;
+      color: $color;
+    }
+  }
+}
+/*
+  Basic autoprefixer mixins
+ */
+
+@mixin transition($value) {
+  -webkit-transition: ($value);
+  -moz-transition: ($value);
+  -ms-transition: ($value);
+  transition: ($value);
+}
+
+/**
+ * Autoprefixer for transform.
+ * Depends on the @prefix mixin or on a compass plugin
+ * @param  {value} $value Transform value
+ */
+@mixin transform($value){
+  @include prefix(transform, $value);
+}
+
+/**
+ * Autoprefixer for text-shadow
+ * Depends on the @prefix mixin or on a compass plugin
+ * @param  {value} $value Text-shadow value
+ */
+@mixin text-shadow($value){
+  @include prefix(text-shadow, $value);
+}
+
+/*
+  ## Mixins by Hugo Giraudel
+
+  http://www.sitepoint.com/dont-use-compass-anymore/
+ */
+
+/**
+### Tint
+
+Slightly lighten a color
+***
+@param {Color} $color color to tint
+@param {Number} $percentage percentage of `$color` in returned color
+@return {Color}
+*/
+@function tint($color, $percentage) {
+    @return mix($color, white, $percentage);
+}
+
+/*
+
+Slightly darken a color
+ @access public
+ @param {Color} $color color to shade
+ @param {Number} $percentage percentage of `$color` in returned color
+ @return {Color}
+*/
+@function shade($color, $percentage) {
+    @return mix($color, black, $percentage);
+}
+
+/*
+http://www.paulund.co.uk/sass-mixins-get-started-next-project
+ */
+
+@mixin background-gradient($startColor, $endColor, $orientation: '') {
+    background: $startColor;
+    @if $orientation=='vertical' {
+        background: -webkit-linear-gradient(top, $startColor, $endColor);
+        background: linear-gradient(to bottom, $startColor, $endColor);
+    }
+    @else if $orientation=='horizontal' {
+        background: -webkit-linear-gradient(left, $startColor, $endColor);
+        background: linear-gradient(to right, $startColor, $endColor);
+    }
+    @else {
+        background: -webkit-radial-gradient(center, ellipse cover, $startColor, $endColor);
+        background: radial-gradient(ellipse at center, $startColor, $endColor);
+    }
+}
+
+@mixin center-element {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*
+## Centering Mixin
+
+Mixin for centering elements inside other components
+
+#### PRE-conditions
+
++ parent must be relative positioned
+ */
+
+@mixin centering($vertical:true, $horizontal:false) {
+    position: absolute;
+    @if ($vertical == true and $horizontal == true) {
+        @include transform(translateY(-50%) translateX(-50%));
+
+        top: 50%;
+        left: 50%;
+    }
+    @else if ($vertical) {
+        top: 50%;
+        @include transform(translateY(-50%));
+    }
+    @else if ($horizontal) {
+        left: 50%;
+        @include transform(translateX(-50%));
+    }
+}
+/*
+## Position mixin
+
+Define the position of an element quickly
+
+#### Properties
+
++ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+
+@example
+  .box
+  {
+    @include position(absolute, 10px, 10px, 10px, 10px);
+  }
+
+ */
+
+@mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $type;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+/*
+## Size mixin
+
+Define the size of an element
+
+#### Properties
+
++ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+
+#### Examples
+
+.box
+{
+  @include size(300px);
+}
+
+.box
+{
+  @include size(300px, 600px);
+}
+
+ */
+
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+/*
+## Vendor prefix anything
+
+Define the size of an element
+
++ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+
+#### Parameters
+
++ $property
++ $value
++ $vendors
+
+#### Examples
+
+.element {
+  @include prefix(transform, rotate(90deg), webkit ms);
+}
+
+ */
+
+@mixin prefix($property, $value, $vendors: webkit moz ms o) {
+    @if $vendors {
+        @each $vendor in $vendors {
+            #{"-" + $vendor + "-" + $property}: #{$value};
+        }
+    }
+    #{$property}: #{$value};
+}
+
+/**
+ * Displays an error or warning message
+ * @param  {String} $message Error message
+ * @url http://www.sitepoint.com/using-error-responsibly-in-sass/
+ */
+@mixin log($message) {
+  /**
+   * you might know that the feature-exists(..) function has only been introduced in Sass 3.3. It does not cover Sass 3.2! Well, that’s part true. In Sass 3.2, feature-exists('at-error') gets evaluated as a string which is truthy. By adding == true, we make sure that Sass 3.2 is not entering this condition, and moves to the @warn version.
+   */
+  @if feature-exists('at-error') == true {
+    @error $message;
+  } @else {
+    @warn $message;
+  }
+}
+/********************************
+
+## REM to Pixels
+
+The REM CSS unit is widely supported on most modern
+browsers but it's not supported in IE8 and lower browsers,
+for unit values to work in both modern browsers and
+IE8 we will need to duplicate the property in the CSS
+
++ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+
+#### Parameters
+
+
+#### Examples
+
+.box
+{
+  @include rem2px(font-size, 1.4);
+}
+
+**********************************/
+
+@mixin rem2px($property, $sizeValue: 1.6) {
+    #{$property}: ($sizeValue * 10) + px;
+    #{$property}: $sizeValue + rem;
+}
+/*
+
+## Clearfix
+
+Use the below mixin for quickly clear fixing your HTML elements.
+
++ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+
+@examples
+.box
+{
+  @include clearfix;
+}
+
+ */
+
+@mixin clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        content: ' ';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+/**
+* ## Hover Shadow
+* @version 1.0.0
+*
+* Gives a shadow effect to an element when in hover status
+*
+* @access public
+* @param {Size} [$shadowSize] - the size of the shadow
+* @param {Color} [$shadowColor] - the color of the shadow
+* @param {Size} [$shadowBlurSize] - the blurring effect on the shadow
+* @param {Duration} [$transitionDuration] - the duration of the transition
+* @param {Effect} [$transitionEffect] - the effect used for the transitions in general
+* @param {Size} [$topTransition] - the change in position from the top
+* @param {Size} [$leftTransition] - the change in position from the left
+* @return {Sequence of rules in Sass format}
+* @todo customize shadow positions based on the top and left position
+**/
+
+@mixin hover-shadow($shadowSize:2px, $shadowColor:black, $shadowBlurSize:2px, $transitionDuration: 300ms, $transitionEffect: ease-out, $topTransition:-2px, $leftTransition:0px) {
+    position: relative;
+    box-shadow: 0 0 0 $shadowColor;
+    top: 0;
+    transition: top $transitionDuration $transitionEffect, left $transitionDuration $transitionEffect, box-shadow $transitionDuration $transitionEffect;
+    &:hover {
+        box-shadow: $shadowSize 0 $shadowBlurSize $shadowColor, $topTransition $shadowSize $shadowBlurSize black;
+        top: $topTransition;
+        left: $leftTransition;
+        z-index: 1;
+    }
+}
+/**
+*
+* @version 1.0.0
+* ## Font Smoothing
+*
+* Antialiases the font, required for some osx computers, apparently, removing blurring effect from it
+*
+* @access public
+* @return {Sequence of rules in Sass format}
+**/
+@mixin font-smoothing() {
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+/**
+ * The card stack mixin.
+ * @author Paulund
+ *
+ * @param   {color}  $card-color    Main color of the card stack. Defaults to white.
+ * @param   {color}  $shadow-color  Color of the shadow. Defaults to black.
+ *
+ * @return  {box-shadow}            Applies a box shadow to the element.
+ *
+ */
+@mixin card-stack( $card-color: white, $shadow-color: black) {
+    box-shadow: 0 0.0625em 0.1875em 0 rgba( $shadow-color, 0.1), 0 0.5em 0 -0.25em shade( $card-color, 5%), 0 0.5em 0.1875em -0.25em rgba( $shadow-color, 0.1), 0 1em 0 -0.5em shade( $card-color, 10%), 0 1em 0.1875em -0.5em rgba( $shadow-color, 0.1);
+}
+
+/**
+ * as seen on http://gsdk.creative-tim.com/
+ */
+@mixin card-up() {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  @include prefix(transform, translateY(-10px));
+}
+
+/**
+ * Breakpoint definition
+ * @author Paulund - http://www.paulund.co.uk/media-query-sass-mixin
+ * @param  {Enumeration} [$breakpoint: xs] The breakpoint in question. Can be either xs, sm, md or lg
+ * @return {Media query for content}  A media query for content space
+ */
+@mixin breakpoint($breakpoint: xs) {
+   /**
+   * Enum breakpoints: the first only has max value, and the last only a min value. All the others have both.
+   * @enum {string}
+   */
+
+    $sizes: ( sm: 768, md: 992, lg: 1200);
+    $sizes-min: (sm: (map_get($sizes,sm) - 1 ), md:(map_get($sizes,md) - 1), lg:(map_get($sizes,lg) - 1));
+    // um regex usado em sublime text
+    // FIND WHAT: \$sizes\.(md|sm|lg)
+    // REPLACE WITH map_get($sizes,$1)
+    $mq-xs: "(max-width: #{map_get($sizes-min,sm)}px)";
+    $mq-sm: "(min-width: #{map_get($sizes,sm)}px) and (max-width: #{map_get($sizes-min,md)}px)";
+    $mq-md: "(min-width: #{map_get($sizes,md)}px) and (max-width: #{map_get($sizes-min,lg)}px)";
+    $mq-lg: "(min-width: #{map_get($sizes,lg)}px)";
+    @if $breakpoint==xs {
+        @media #{$mq-xs} {
+            @content;
+        }
+    }
+    @else if $breakpoint==sm {
+        @media #{$mq-sm} {
+            @content;
+        }
+    }
+    @else if $breakpoint==md {
+        @media #{$mq-md} {
+            @content;
+        }
+    }
+    @else if $breakpoint==lg {
+        @media #{$mq-lg} {
+            @content;
+        }
+    }
+}
+
+/**
+ * Define a custom breakpoint with min and max width
+ * @param  {number} $min: false         Minimum size, in pixels
+ * @param  {number} $max: false         Maximum size, in pixels
+ * @return {css}       Css code for a breakpoint with the defined content
+ */
+@mixin breakpoint-custom($min: false, $max: false) {
+  @if ($min) {
+    @if ($max) {
+      @media (min-width: #{$min}px) and (max-width: #{$max}px){
+        @content;
+      }
+    }
+    @else {
+      @media (min-width: #{$min}px) {
+        @content;
+      }
+    }
+  }
+  @else if ($max) {
+    @media (max-width: #{$max}px){
+        @content;
+      }
+  }
+}
+
+/**
+ * Toggle visibility until a certain limit
+ * @param  {String} $selector A selector to define which class it will be applied to
+ * @param  {Number} $size:    768           The maximum size limit until which the selector will be visible (in pixels)
+ * @example @include visible-until ("#image-base")
+ * @example @include visible-until (".image", 500)
+ */
+@mixin visible-until($selector, $size: 768) {
+  #{$selector} {
+    display: none;
+  }
+
+  @media (max-width: #{$size}px) {
+    display: inherit;
+  }
+}
+
+/**
+ * A function to generate a centered wrapper with maximum width, based on whichever grid
+ * @param  {String} $grid: "bootstrap"   The type of grid. May include "bootstrap" or "foundation"
+ */
+@mixin splash-wrapper($grid: "bootstrap") {
+    width: 90%;
+    max-width: 1170px;
+    margin: auto;
+}
+
+/**
+ * Add the necessary css to the ellipsis
+ * @return {css} three rules for setting up an ellipsis
+ * @source https://css-tricks.com/almanac/properties/t/text-overflow/
+ */
+@mixin ellipsis() {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/**
+ * Create css to grayscale an image
+ * Expects an image to be the affected element
+ * It is a mixin adaptation of code provided by Karl Horky at http://www.karlhorky.com/2012/06/cross-browser-image-grayscale-with-css.html
+ * @author Karl Horky
+ */
+@mixin grayscale($reset:false) {
+  @if ($reset != false){
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+    filter: gray;
+    -webkit-filter: grayscale(100%);
+  }
+  @else {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    -webkit-filter: grayscale(0%);
+  }
+}
+
+/**
+
+/**
+ * Nelson-proof mixin for obtaining ems from point units
+ * @pre body size must be
+ * @param  {Number} $pts The amount of pts to be converted (no unit)
+ * @return {Number (with unit)}      The corresponding value in pixels
+ */
+@function pt_to_px($pts) {
+  @return #{round($pts/0.75)}px;
+}
+
+/**
+ * A mixin for customizing placeholder text across multiple browsers.
+ * @url http://stackoverflow.com/questions/14728285/how-to-style-placeholder-attribute-across-all-browsers#14728578
+ */
+@mixin placeholder() {
+&::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder { @content }
+}
+
+/**
+ * A background image of a default 1280x720 resolution depicting either an unsplash placeholder (default) or a placekitten. The cover effect is courtesy of Chris Coyier.
+ * @param  {[number]} $image-width:  1280          [The default image width resolution]
+ * @param  {[number]} $image-height: 720           [The default image height resolution]
+ * @param  {[boolean]} $placekitten:  false         [if set to true, it will render a placekitten. Otherwise, it will get an unsplash placeholder instead]
+ * @param  {[boolean]} $grayscale:    false         [description]
+ * @param  {[url]} $image-url:    ""         [If set to anything other than "", this will become the url for the background image itself]
+ * @return {[css]}                [set of css rules with background image and cover]
+ * @url https://css-tricks.com/perfect-full-page-background-image/
+ */
+@mixin background-image($image-width: 1280, $image-height: 720, $placekitten: false, $grayscale: false, $image-url:""){
+  $url: "";
+
+  @if ($image-url != "") {
+    $url: $image-url
+  }
+  @else {
+    // check if placekitten or unsplash
+    @if ($placekitten == true) {
+      $url: $url + "http://placekitten.com";
+    }
+    @else {
+      $url: $url + "https://unsplash.it";
+    }
+    // check if grayscale
+    @if ($grayscale == true) {
+      $url: $url + "/g";
+    }
+  }
+
+  background: url(#{$url}/#{$image-width}/#{$image-height}) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
