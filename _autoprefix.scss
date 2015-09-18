@@ -1,0 +1,65 @@
+/*
+ * Autoprefixing mixins
+ * ======
+ *
+ * General-purpose Mixins for autoprefixing properties
+ *
+ */
+
+///////////////////////////////////////////////////////////
+
+/**
+ * Vendor prefix anything... probably!
+ * @param  {String} $property The property to be prefixed
+ * @param  {String} $value    The property value
+ * @param  {List} $vendors: [webkit moz ms o] List of vendor prefixes
+ * @return {CSS rules}    Ruleset with vendor prefixes and the default rule
+ * @author Paulund
+ * @url source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+ * @example
+  .element {
+    @include prefix(transform, rotate(90deg), webkit ms);
+  }
+ */
+@mixin prefix($property, $value, $vendors: webkit moz ms o) {
+    @if $vendors {
+        @each $vendor in $vendors {
+            #{"-" + $vendor + "-" + $property}: #{$value};
+        }
+    }
+    #{$property}: #{$value};
+}
+
+/**
+ * Autoprefix transition
+ * @param  {values} $value a group of properties that would be applicable to values
+ * @return {css rules}        a group of rules with vendor prefixes
+ */
+@mixin transition($value) {
+  -webkit-transition: ($value);
+  -moz-transition: ($value);
+  -ms-transition: ($value);
+  transition: ($value);
+}
+
+@mixin background-size($value) {
+  @include prefix(background-size, $value);
+}
+
+/**
+ * Autoprefixer for transform.
+ * Depends on the @prefix mixin or on a compass plugin
+ * @param  {value} $value Transform value
+ */
+@mixin transform($value){
+  @include prefix(transform, $value);
+}
+
+/**
+ * Autoprefixer for text-shadow
+ * Depends on the @prefix mixin or on a compass plugin
+ * @param  {value} $value Text-shadow value
+ */
+@mixin text-shadow($value){
+  @include prefix(text-shadow, $value);
+}

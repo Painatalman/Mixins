@@ -1,0 +1,15 @@
+/*
+ * Mixins
+ * ======
+ *
+ * Mixins for resetting styles
+ *
+ */
+
+/**
+ * Removes default bullet and padding from a list (to be used in ul elements)
+ */
+@mixin list-reset {
+  padding-left: 0;
+  list-style-type: none;
+}

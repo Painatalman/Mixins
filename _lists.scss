@@ -1,0 +1,34 @@
+/*
+ * Mixins
+ * ======
+ *
+ * Mixins related to lists and list items
+ *
+ */
+
+/**
+ * Colored bullet lists INSIDE a specific div/container/section/whatever
+ * @param  {color} $color:        tomato        Default bullet color
+ * @param  {unit} $padding-left: 20px          Default padding for li items
+ * @param  {string} $bullet-icon:  '2022'        Bullet icon character
+ * @return {css}                set of rules for the ul and li tags
+ * @pre Must be applied to an element that contains ul and li
+ */
+@mixin colored-bullet-lists($color: tomato, $padding-left: 20px, $bullet-icon: '\2022') {
+  ul {
+    list-style-type: none;
+    padding-left: $padding-left;
+  }
+  li {
+    // padding-bottom: 10px;
+    &::before {
+      content: $bullet-icon;
+      display: block;
+      position: relative;
+      max-width: 0;
+      max-height: 0;
+      left: -$padding-left;
+      color: $color;
+    }
+  }
+}

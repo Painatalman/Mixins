@@ -1,0 +1,92 @@
+/*
+ * Helper Mixins
+ * ======
+ *
+ * General-purpose Mixins for various purposes
+ *
+ */
+
+/**
+Slightly lighten a color
+***
+@param {Color} $color color to tint
+@param {Number} $percentage percentage of `$color` in returned color
+@return {Color}
+@author Hugo Giraudel
+@url http://www.sitepoint.com/dont-use-compass-anymore/
+*/
+@function tint($color, $percentage) {
+    @return mix($color, white, $percentage);
+}
+
+/*
+
+Slightly darken a color
+ @access public
+ @param {Color} $color color to shade
+ @param {Number} $percentage percentage of `$color` in returned color
+ @return {Color}
+ @author Hugo Giraudel
+@url http://www.sitepoint.com/dont-use-compass-anymore/
+*/
+@function shade($color, $percentage) {
+    @return mix($color, black, $percentage);
+}
+
+/*
+http://www.paulund.co.uk/sass-mixins-get-started-next-project
+ */
+/**
+ * Generate a gradient with horizontal or vertical orientation.
+ * Authored by *Paulund*
+ * @param  {Color} $startColor   The starting (left or top) color
+ * @param  {Color} $endColor     The ending (right or bottom) color
+ * @param  {'vertical' | 'horizontal'} $orientation: 'vertical'            The orientation of the gradient. Currently only supporting 'vertical' and 'horizontal' values
+ * @return {CSS rules}               Autoprefixed set of rules for gradients
+ */
+@mixin background-gradient($startColor, $endColor, $orientation: 'vertical') {
+    background: $startColor;
+    @if $orientation=='vertical' {
+        background: -webkit-linear-gradient(top, $startColor, $endColor);
+        background: linear-gradient(to bottom, $startColor, $endColor);
+    }
+    @else if $orientation=='horizontal' {
+        background: -webkit-linear-gradient(left, $startColor, $endColor);
+        background: linear-gradient(to right, $startColor, $endColor);
+    }
+    @else {
+        background: -webkit-radial-gradient(center, ellipse cover, $startColor, $endColor);
+        background: radial-gradient(ellipse at center, $startColor, $endColor);
+    }
+}
+
+/**
+* ## Hover Shadow
+* @version 1.0.0
+*
+* Gives a shadow effect to an element when in hover status
+*
+* @access public
+* @param {Size} [$shadowSize] - the size of the shadow
+* @param {Color} [$shadowColor] - the color of the shadow
+* @param {Size} [$shadowBlurSize] - the blurring effect on the shadow
+* @param {Duration} [$transitionDuration] - the duration of the transition
+* @param {Effect} [$transitionEffect] - the effect used for the transitions in general
+* @param {Size} [$topTransition] - the change in position from the top
+* @param {Size} [$leftTransition] - the change in position from the left
+* @return {Sequence of rules in Sass format}
+* @todo customize shadow positions based on the top and left position
+**/
+
+@mixin hover-shadow($shadowSize:2px, $shadowColor:black, $shadowBlurSize:2px, $transitionDuration: 300ms, $transitionEffect: ease-out, $topTransition:-2px, $leftTransition:0px) {
+    position: relative;
+    box-shadow: 0 0 0 $shadowColor;
+    top: 0;
+    transition: top $transitionDuration $transitionEffect, left $transitionDuration $transitionEffect, box-shadow $transitionDuration $transitionEffect;
+    &:hover {
+        box-shadow: $shadowSize 0 $shadowBlurSize $shadowColor, $topTransition $shadowSize $shadowBlurSize black;
+        top: $topTransition;
+        left: $leftTransition;
+        z-index: 1;
+    }
+}

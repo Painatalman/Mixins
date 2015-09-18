@@ -1,0 +1,7 @@
+/**
+ * A mixin for customizing placeholder text across multiple browsers.
+ * @url http://stackoverflow.com/questions/14728285/how-to-style-placeholder-attribute-across-all-browsers#14728578
+ */
+@mixin placeholder() {
+&::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder { @content }
+}

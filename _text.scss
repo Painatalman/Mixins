@@ -1,0 +1,15 @@
+/**
+*
+* @version 1.0.0
+* ## Font Smoothing
+*
+* Antialiases the font, required for some osx computers, apparently, removing blurring effect from it
+*
+* @access public
+* @return {Sequence of rules in Sass format}
+**/
+@mixin font-smoothing() {
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
