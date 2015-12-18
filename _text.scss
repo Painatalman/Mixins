@@ -13,3 +13,22 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
+
+
+/**
+*
+* @version 1.0.0
+* ## Header wrapping
+*
+* Wrapping for grouping rules for all headings
+*
+* @access public
+* @return wrapper
+* @url http://stackoverflow.com/questions/7539125/css-target-all-h-tags
+**/
+@mixin headings {
+    h1, h2, h3,
+    h4, h5, h6 {
+        @content;
+    }
+}

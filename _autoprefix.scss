@@ -42,6 +42,11 @@
   transition: ($value);
 }
 
+/**
+ * Autoprefixing the background-size property
+ * @param  {values} $value the default value
+ * @return {[type]}        a prefixed background-size property
+ */
 @mixin background-size($value) {
   @include prefix(background-size, $value);
 }
