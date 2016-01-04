@@ -26,62 +26,6 @@ Define the size of an element
     height: $height;
 }
 
-/********************************
-
-## REM to Pixels
-
-The REM CSS unit is widely supported on most modern
-browsers but it's not supported in IE8 and lower browsers,
-for unit values to work in both modern browsers and
-IE8 we will need to duplicate the property in the CSS
-
-+ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
-
-#### Parameters
-
-
-#### Examples
-
-.box
-{
-  @include rem2px(font-size, 1.4);
-}
-
-**********************************/
-
-@mixin rem2px($property, $sizeValue: 1.6) {
-    #{$property}: ($sizeValue * 10) + px;
-    #{$property}: $sizeValue + rem;
-}
-/*
-
-## Clearfix
-
-Use the below mixin for quickly clear fixing your HTML elements.
-
-+ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
-
-@examples
-.box
-{
-  @include clearfix;
-}
-
- */
-
-@mixin clearfix {
-    *zoom: 1;
-    &:before, &:after {
-        content: ' ';
-        display: table;
-    }
-    &:after {
-        clear: both;
-    }
-}
-
-
-
 /**
  * The card stack mixin.
  * @author Paulund
@@ -94,30 +38,6 @@ Use the below mixin for quickly clear fixing your HTML elements.
  */
 @mixin card-stack( $card-color: white, $shadow-color: black) {
     box-shadow: 0 0.0625em 0.1875em 0 rgba( $shadow-color, 0.1), 0 0.5em 0 -0.25em shade( $card-color, 5%), 0 0.5em 0.1875em -0.25em rgba( $shadow-color, 0.1), 0 1em 0 -0.5em shade( $card-color, 10%), 0 1em 0.1875em -0.5em rgba( $shadow-color, 0.1);
-}
-
-/**
- * as seen on http://gsdk.creative-tim.com/
- */
-@mixin card-up() {
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-  @include prefix(transform, translateY(-10px));
-}
-
-
-
-
-
-/**
-
-/**
- * Nelson-proof mixin for obtaining ems from point units
- * @pre body size must be
- * @param  {Number} $pts The amount of pts to be converted (no unit)
- * @return {Number (with unit)}      The corresponding value in pixels
- */
-@function pt_to_px($pts) {
-  @return #{round($pts/0.75)}px;
 }
 
 

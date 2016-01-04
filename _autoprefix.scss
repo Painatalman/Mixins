@@ -61,6 +61,15 @@
 }
 
 /**
+ * Autoprefixer for transform.
+ * Depends on the @prefix mixin or on a compass plugin
+ * @param  {value} $value Transform value
+ */
+@mixin transform-origin($value){
+  @include prefix(transform-origin, $value);
+}
+
+/**
  * Autoprefixer for text-shadow
  * Depends on the @prefix mixin or on a compass plugin
  * @param  {value} $value Text-shadow value

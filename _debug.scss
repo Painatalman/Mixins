@@ -1,3 +1,19 @@
+/**
+ * Displays an error or warning message
+ * @param  {String} $message Error message
+ * @url http://www.sitepoint.com/using-error-responsibly-in-sass/
+ */
+@mixin log($message) {
+  /**
+   * you might know that the feature-exists(..) function has only been introduced in Sass 3.3. It does not cover Sass 3.2! Well, that’s part true. In Sass 3.2, feature-exists('at-error') gets evaluated as a string which is truthy. By adding == true, we make sure that Sass 3.2 is not entering this condition, and moves to the @warn version.
+   */
+  @if feature-exists('at-error') == true {
+    @error $message;
+  } @else {
+    @warn $message;
+  }
+}
+
 /*
  * Reporting mixins
  * ======
