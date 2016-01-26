@@ -6,9 +6,9 @@
  *
  */
 
-/**
- * Removes default bullet and padding from a list (to be used in ul elements)
- */
+/// Reset Lists
+/// Removes default bullet and padding from a list (to be used in ul elements)
+/// @group lists
 @mixin list-reset {
   padding-left: 0;
   list-style-type: none;

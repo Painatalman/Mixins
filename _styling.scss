@@ -1,100 +1,87 @@
-/*
- * Helper Mixins
- * ======
- *
- * General-purpose Mixins for various purposes
- *
- */
+////
+/// Helper Mixins
+/// ======
+///
+/// General-purpose Mixins for various purposes
+///
 
-/**
-Slightly lighten a color
-***
-@param {Color} $color color to tint
-@param {Number} $percentage percentage of `$color` in returned color
-@return {Color}
-@author Hugo Giraudel
-@url http://www.sitepoint.com/dont-use-compass-anymore/
-*/
+/// Tint
+/// Slightly lighten a color
+/// @group helpers
+///@param {Color} $color color to tint
+///@param {Number} $percentage percentage of `$color` in returned color
+///@return {Color}
+///@author Hugo Giraudel
+///@source http://www.sitepoint.com/dont-use-compass-anymore/
 @function tint($color, $percentage) {
-    @return mix($color, white, $percentage);
+  @return mix($color, white, $percentage);
 }
 
-/*
-
-Slightly darken a color
- @access public
- @param {Color} $color color to shade
- @param {Number} $percentage percentage of `$color` in returned color
- @return {Color}
- @author Hugo Giraudel
-@url http://www.sitepoint.com/dont-use-compass-anymore/
-*/
+/// Shade
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color color to shade
+/// @param {Number} $percentage percentage of `$color` in returned color
+/// @return {Color}
+/// @author Hugo Giraudel
+/// @source http://www.sitepoint.com/dont-use-compass-anymore/
 @function shade($color, $percentage) {
-    @return mix($color, black, $percentage);
+  @return mix($color, black, $percentage);
 }
 
-/*
-http://www.paulund.co.uk/sass-mixins-get-started-next-project
- */
-/**
- * Generate a gradient with horizontal or vertical orientation.
- * Authored by *Paulund*
- * @param  {Color} $startColor   The starting (left or top) color
- * @param  {Color} $endColor     The ending (right or bottom) color
- * @param  {'vertical' | 'horizontal'} $orientation: 'vertical'            The orientation of the gradient. Currently only supporting 'vertical' and 'horizontal' values
- * @return {CSS rules}               Autoprefixed set of rules for gradients
- */
+/// Background gradient
+/// Generate a gradient with horizontal or vertical orientation.
+/// @source http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @group colors
+/// @author Paulund
+/// @param  {Color} $startColor   The starting (left or top) color
+/// @param  {Color} $endColor     The ending (right or bottom) color
+/// @param  {'vertical' | 'horizontal'} $orientation: 'vertical'            The orientation of the gradient. Currently only supporting 'vertical' and 'horizontal' values
 @mixin background-gradient($startColor, $endColor, $orientation: 'vertical') {
-    background: $startColor;
-    @if $orientation=='vertical' {
-        background: -webkit-linear-gradient(top, $startColor, $endColor);
-        background: linear-gradient(to bottom, $startColor, $endColor);
-    }
-    @else if $orientation=='horizontal' {
-        background: -webkit-linear-gradient(left, $startColor, $endColor);
-        background: linear-gradient(to right, $startColor, $endColor);
-    }
-    @else {
-        background: -webkit-radial-gradient(center, ellipse cover, $startColor, $endColor);
-        background: radial-gradient(ellipse at center, $startColor, $endColor);
-    }
+  background: $startColor;
+  @if $orientation=='vertical' {
+    background: -webkit-linear-gradient(top, $startColor, $endColor);
+    background: linear-gradient(to bottom, $startColor, $endColor);
+  }
+  @else if $orientation=='horizontal' {
+    background: -webkit-linear-gradient(left, $startColor, $endColor);
+    background: linear-gradient(to right, $startColor, $endColor);
+  }
+  @else {
+    background: -webkit-radial-gradient(center, ellipse cover, $startColor, $endColor);
+    background: radial-gradient(ellipse at center, $startColor, $endColor);
+  }
 }
 
-/**
-* ## Hover Shadow
-* @version 1.0.0
-*
-* Gives a shadow effect to an element when in hover status
-*
-* @access public
-* @param {Size} [$shadowSize] - the size of the shadow
-* @param {Color} [$shadowColor] - the color of the shadow
-* @param {Size} [$shadowBlurSize] - the blurring effect on the shadow
-* @param {Duration} [$transitionDuration] - the duration of the transition
-* @param {Effect} [$transitionEffect] - the effect used for the transitions in general
-* @param {Size} [$topTransition] - the change in position from the top
-* @param {Size} [$leftTransition] - the change in position from the left
-* @return {Sequence of rules in Sass format}
-* @todo customize shadow positions based on the top and left position
-**/
-
+/// ## Hover Shadow
+/// Gives a shadow effect to an element when in hover status
+///
+/// @access public
+/// @param {Size} $shadowSize - the size of the shadow
+/// @param {Color} $shadowColor - the color of the shadow
+/// @param {Size} $shadowBlurSize - the blurring effect on the shadow
+/// @param {Duration} $transitionDuration - the duration of the transition
+/// @param {Effect} $transitionEffect - the effect used for the transitions in general
+/// @param {Size} $topTransition - the change in position from the top
+/// @param {Size} $leftTransition - the change in position from the left
+/// @todo customize shadow positions based on the top and left position
 @mixin hover-shadow($shadowSize:2px, $shadowColor:black, $shadowBlurSize:2px, $transitionDuration: 300ms, $transitionEffect: ease-out, $topTransition:-2px, $leftTransition:0px) {
-    position: relative;
-    box-shadow: 0 0 0 $shadowColor;
-    top: 0;
-    transition: top $transitionDuration $transitionEffect, left $transitionDuration $transitionEffect, box-shadow $transitionDuration $transitionEffect;
-    &:hover {
-        box-shadow: $shadowSize 0 $shadowBlurSize $shadowColor, $topTransition $shadowSize $shadowBlurSize black;
-        top: $topTransition;
-        left: $leftTransition;
-        z-index: 1;
-    }
+  position: relative;
+  box-shadow: 0 0 0 $shadowColor;
+  top: 0;
+  transition: top $transitionDuration $transitionEffect, left $transitionDuration $transitionEffect, box-shadow $transitionDuration $transitionEffect;
+  &:hover {
+    box-shadow: $shadowSize 0 $shadowBlurSize $shadowColor, $topTransition $shadowSize $shadowBlurSize black;
+    top: $topTransition;
+    left: $leftTransition;
+    z-index: 1;
+  }
 }
 
-/**
- * as seen on http://gsdk.creative-tim.com/
- * Gives a card effect due to the impact of a shadow
- */
+/// Card Component
+/// Gives a card effect due to the impact of a shadow
+/// as seen on http://gsdk.creative-tim.com/
+/// @group components
 @mixin card-up() {
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   @include prefix(transform, translateY(-10px));

@@ -1,6 +1,6 @@
 /// BEM Element creator
 /// Add a BEM element
-/// @grupo methodologies
+/// @group methodologies
 /// @param  {string} $element - element name
 @mixin bem-element($element) {
   &__#{$element} {

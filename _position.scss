@@ -1,21 +1,22 @@
 @import "autoprefix";
 
-/**
- * Centers a block horizontally
- */
+/// Center Block (Horizontal)
+ /// Centers a block horizontally
+ /// @group positioning
+ ////
 @mixin center-element {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-/**
- * Mixin for centering an element, but that will only work inside a non-static element (in terms of positioning)
- * @param  {Boolean} $vertical:true    Whether you want the element to be centered vertically or not
- * @param  {Boolean} $horizontal:false Whether you want the element to be centered horizontally or not
- * @pre Element position must not be static
- * @return {CSS rules}  a set of css rules for centering the element where the mixin is called
- */
+/// Center Element
+ /// Mixin for centering an element, but that will only work inside a non-static element (in terms of positioning)
+ /// @group positioning
+ /// @param  {Boolean} $vertical:true    Whether you want the element to be centered vertically or not
+ /// @param  {Boolean} $horizontal:false Whether you want the element to be centered horizontally or not
+ /// @pre Element position must not be static
+/// @requires {mixin} prefix
 @mixin centering($vertical:true, $horizontal:false) {
     position: absolute;
     @if ($vertical == true and $horizontal == true) {
@@ -34,21 +35,20 @@
     }
 }
 
-/**
- * Define the position of an element quickly
- * @param  {String} $type    The value for the position attribute
- * @param  {Size value} $top:    null          Top value
- * @param  {Size value} $right:  null          Right value
- * @param  {Size value} $bottom: null          Bottom value
- * @param  {Size value} $left:   null          Left value
- * @return {CSS rules}          Set of rules for positioning the element
- * @url source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
- * @author Paulund
- * @example
-    .box {
-      @include position(absolute, 10px, 10px, 10px, 10px);
-    }
- */
+/// Position
+ /// Define the position of an element quickly
+ /// @param  {String} $type    The value for the position attribute
+ /// @param  {Size value} $top:    null          Top value
+ /// @param  {Size value} $right:  null          Right value
+ /// @param  {Size value} $bottom: null          Bottom value
+ /// @param  {Size value} $left:   null          Left value
+ /// @group positioning
+ /// @link source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+ /// @author Paulund
+ /// @example
+ ///   .box {
+ ///     @include position(absolute, 10px, 10px, 10px, 10px);
+ ///   }
 @mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
     position: $type;
     top: $top;

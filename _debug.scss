@@ -1,7 +1,7 @@
 /// Logs
 /// Displays an error or warning message
 /// @param  {String} $message Error message
-/// @url http://www.sitepoint.com/using-error-responsibly-in-sass/
+/// @link http://www.sitepoint.com/using-error-responsibly-in-sass/
 @mixin log($message) {
   @if feature-exists('at-error')==true {
     @error $message;
@@ -21,7 +21,7 @@
 /// Error logging with fallback for SASS 3.2 (?)
 /// @param  {String} $message The error message
 /// @example 
-/// @include log('Oops, something is wrong with what you just did!');
+///   @include log('Oops, something is wrong with what you just did!');
 /// @link http://www.sitepoint.com/using-error-responsibly-in-sass/
 /// @author: Hugo Giraudel
 @mixin error-log($message) {
