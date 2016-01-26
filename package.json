@@ -1,0 +1,33 @@
+{
+  "name": "Sass Mixins",
+  "description": "Overall bunch of mixins in SCSS format",
+  "author": {
+    "name": "Carlos Batman",
+    "url": "https://github.com/Painatalman",
+    "email": "maiquedi@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Mickael Morgado"
+    }
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Painatalman/Mixins"
+  },
+  "homepage": "https://github.com/Painatalman/Mixins",
+  "keywords": [
+    "sass",
+    "scss",
+    "doc",
+    "documentation",
+  ],
+  "bugs": {
+    "url": "https://github.com/Painatalman/Mixins/issues"
+  },
+  "scripts": {
+    "run": "sassdoc ."
+  }
+}

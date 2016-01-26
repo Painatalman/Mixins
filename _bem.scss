@@ -1,20 +1,18 @@
-/**
- * Add a BEM element
- * @param  {string} $element element name
- * @return {content}          wrapper for content for a BEM modifier class
- */
-@mixin element($element) {
+/// BEM Element creator
+/// Add a BEM element
+/// @grupo methodologies
+/// @param  {string} $element - element name
+@mixin bem-element($element) {
   &__#{$element} {
     @content;
   }
 }
 
-/**
- * Add a BEM modifier
- * @param  {string} $element element name
- * @return {content}          wrapper for a bem modifier class
- */
-@mixin element($modifier) {
+/// BEM Modifier
+/// Add a BEM modifier
+/// @group methodologies
+/// @param  {string} $modifier - modifier suffix
+@mixin bem-modifier($modifier) {
   &--#{modifier} {
     @content;
   }

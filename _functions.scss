@@ -1,14 +1,14 @@
-/**
- * Convert pixels to em. By default, the font size of the body is considered to be 14px
- * @url http://blackbe.lt/useful-sass-functions-converting-px-to-em/
- * @author Dustin Horton
- * @param  {String} $px The pixel value to be converted to em values
- * @param  {[type]} $font-size: 14px  The body pixel value. By default, it is 14px
- * @return {String} An em value, along with the unit
- * @example em(12px); // will return 6/7em
- * @example em(20px, 10px); // will return 2em
- */
-
-@function em ($px, $default-font-size: 14px) {
-  @return ($px / $default-font-size) * 1em;
-}
+  /// Pixels to Em
+  /// Convert pixels to em. By default, the font size of the body is considered to be 14px
+  /// @url http://blackbe.lt/useful-sass-functions-converting-px-to-em/
+  /// @author Dustin Horton
+  /// @param  {String} $px The pixel value to be converted to em values
+  /// @param  {[type]} $font-size: 14px  The body pixel value. By default, it is 14px
+  /// @return {String} An em value, along with the unit
+  /// @example 
+  /// em(12px); // will return 6/7em
+  /// @example 
+  /// em(20px, 10px); // will return 2em
+  @function em ($px, $default-font-size: 14px) {
+    @return ($px / $default-font-size) /// 1em;
+  }

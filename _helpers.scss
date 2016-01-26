@@ -1,18 +1,12 @@
-/*
-## Clearfix
-
-Use the below mixin for quickly clear fixing your HTML elements.
-
-+ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
-
-@examples
-.box
-{
-  @include clearfix;
-}
-
- */
-
+///
+///## Clearfix
+///Use the below mixin for quickly clear fixing your HTML elements.
+///@link http://www.paulund.co.uk/sass-mixins-get-started-next-project
+///@example
+/// .box
+/// {
+///   @include clearfix;
+/// }
 @mixin clearfix {
     *zoom: 1;
     &:before, &:after {
@@ -24,29 +18,18 @@ Use the below mixin for quickly clear fixing your HTML elements.
     }
 }
 
-/********************************
-
-## REM to Pixels
-
-The REM CSS unit is widely supported on most modern
-browsers but it's not supported in IE8 and lower browsers,
-for unit values to work in both modern browsers and
-IE8 we will need to duplicate the property in the CSS
-
-+ source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
-
-#### Parameters
-
-
-#### Examples
-
-.box
-{
-  @include rem2px(font-size, 1.4);
-}
-
-**********************************/
-
+///## REM to Pixels
+///The REM CSS unit is widely supported on most modern
+///browsers but it's not supported in IE8 and lower browsers,
+///for unit values to work in both modern browsers and
+///IE8 we will need to duplicate the property in the CSS
+///
+///@link http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @example
+/// .box
+/// {
+///   @include rem2px(font-size, 1.4);
+/// }
 @mixin rem2px($property, $sizeValue: 1.6) {
     #{$property}: ($sizeValue * 10) + px;
     #{$property}: $sizeValue + rem;
