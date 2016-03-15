@@ -1,0 +1,44 @@
+/// ## Hover Shadow
+/// Gives a shadow effect to an element when in hover status
+///
+/// @access public
+/// @param {Size} $shadowSize - the size of the shadow
+/// @param {Color} $shadowColor - the color of the shadow
+/// @param {Size} $shadowBlurSize - the blurring effect on the shadow
+/// @param {Duration} $transitionDuration - the duration of the transition
+/// @param {Effect} $transitionEffect - the effect used for the transitions in general
+/// @param {Size} $topTransition - the change in position from the top
+/// @param {Size} $leftTransition - the change in position from the left
+/// @todo customize shadow positions based on the top and left position
+@mixin hover-shadow($shadowSize:2px, $shadowColor:black, $shadowBlurSize:2px, $transitionDuration: 300ms, $transitionEffect: ease-out, $topTransition:-2px, $leftTransition:0px) {
+  position: relative;
+  box-shadow: 0 0 0 $shadowColor;
+  top: 0;
+  transition: top $transitionDuration $transitionEffect, left $transitionDuration $transitionEffect, box-shadow $transitionDuration $transitionEffect;
+  &:hover {
+    box-shadow: $shadowSize 0 $shadowBlurSize $shadowColor, $topTransition $shadowSize $shadowBlurSize black;
+    top: $topTransition;
+    left: $leftTransition;
+    z-index: 1;
+  }
+}
+
+/// Card Component
+/// Gives a card effect due to the impact of a shadow
+/// as seen on http://gsdk.creative-tim.com/
+/// @group components
+@mixin card-up() {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  @include prefix(transform, translateY(-10px));
+}
+
+
+///The card stack effect mixin.
+///@author Paulund
+///@param   {color}  $card-color    Main color of the card stack. Defaults to white.
+///@param   {color}  $shadow-color  Color of the shadow. Defaults to black.
+@mixin card-stack( $card-color: white, $shadow-color: black) {
+    box-shadow: 0 0.0625em 0.1875em 0 rgba( $shadow-color, 0.1), 0 0.5em 0 -0.25em shade( $card-color, 5%), 0 0.5em 0.1875em -0.25em rgba( $shadow-color, 0.1), 0 1em 0 -0.5em shade( $card-color, 10%), 0 1em 0.1875em -0.5em rgba( $shadow-color, 0.1);
+}
+
+

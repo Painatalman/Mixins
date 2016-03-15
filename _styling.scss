@@ -29,6 +29,29 @@
   @return mix($color, black, $percentage);
 }
 
+///  Create a random color (with parameters in rgb)
+///  @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+///  @author https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @param  {number} $min: 0  The minimum value for each color value (rgb)
+/// @param  {number} $max: 255  The maximum value for each color value (rgb)
+/// @param  {number} $alpha: 1  Transparency value (from 0 to 1)
+@function random-color($min: 0, $max: 255, $alpha: 1) {
+  @if $min < 0 {
+    $min: -1;
+  } @else {
+    $min: $min - 1;
+  }
+  @if $max > 255 {
+    $max: 256;
+  } @else {
+    $max: $max + 1;
+  }
+  $red: random($max) + $min;
+  $green: random($max) + $min;
+  $blue: random($max) + $min;
+  @return rgba($red, $green, $blue, $alpha);
+}
+
 /// Background gradient
 /// Generate a gradient with horizontal or vertical orientation.
 /// @source http://www.paulund.co.uk/sass-mixins-get-started-next-project
@@ -53,36 +76,3 @@
   }
 }
 
-/// ## Hover Shadow
-/// Gives a shadow effect to an element when in hover status
-///
-/// @access public
-/// @param {Size} $shadowSize - the size of the shadow
-/// @param {Color} $shadowColor - the color of the shadow
-/// @param {Size} $shadowBlurSize - the blurring effect on the shadow
-/// @param {Duration} $transitionDuration - the duration of the transition
-/// @param {Effect} $transitionEffect - the effect used for the transitions in general
-/// @param {Size} $topTransition - the change in position from the top
-/// @param {Size} $leftTransition - the change in position from the left
-/// @todo customize shadow positions based on the top and left position
-@mixin hover-shadow($shadowSize:2px, $shadowColor:black, $shadowBlurSize:2px, $transitionDuration: 300ms, $transitionEffect: ease-out, $topTransition:-2px, $leftTransition:0px) {
-  position: relative;
-  box-shadow: 0 0 0 $shadowColor;
-  top: 0;
-  transition: top $transitionDuration $transitionEffect, left $transitionDuration $transitionEffect, box-shadow $transitionDuration $transitionEffect;
-  &:hover {
-    box-shadow: $shadowSize 0 $shadowBlurSize $shadowColor, $topTransition $shadowSize $shadowBlurSize black;
-    top: $topTransition;
-    left: $leftTransition;
-    z-index: 1;
-  }
-}
-
-/// Card Component
-/// Gives a card effect due to the impact of a shadow
-/// as seen on http://gsdk.creative-tim.com/
-/// @group components
-@mixin card-up() {
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-  @include prefix(transform, translateY(-10px));
-}

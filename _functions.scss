@@ -1,14 +1,68 @@
-  /// Pixels to Em
-  /// Convert pixels to em. By default, the font size of the body is considered to be 14px
-  /// @url http://blackbe.lt/useful-sass-functions-converting-px-to-em/
-  /// @author Dustin Horton
-  /// @param  {String} $px The pixel value to be converted to em values
-  /// @param  {[type]} $font-size: 14px  The body pixel value. By default, it is 14px
-  /// @return {String} An em value, along with the unit
-  /// @example 
-  /// em(12px); // will return 6/7em
-  /// @example 
-  /// em(20px, 10px); // will return 2em
-  @function em ($px, $default-font-size: 14px) {
-    @return ($px / $default-font-size) /// 1em;
+/// Strip the units from a value, from the Juice library
+/// Basically, it strips divides the value by 1(unit) (hence the multiplication by zero and addition by 1)
+/// @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @author https://github.com/kjbrum
+/// @param  {[type]} $font-size: 16px  The body pixel value. By default, it is 16px 
+/// @return {String} The value, minus the unit
+@function strip-units($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+/// Pixels to Em, adapted from 2 authors
+/// Convert pixels to em. By default, the font size of the body is considered to be 16px
+/// @url http://blackbe.lt/useful-sass-functions-converting-px-to-em/
+/// @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @author Dustin Horton
+/// @author https://github.com/kjbrum
+/// @param  {String} $px The pixel value to be converted to em values
+/// @param  {[type]} $default-font-size: 16px  The body pixel value. By default, it is 14px
+/// @return {String} An em value, along with the unit
+/// @example 
+/// em(12px); // will return 6/7em
+/// @example 
+/// em(20px, 10px); // will return 2em
+@function px2em ($px, $default-font-size: 16px) {
+  // strip units first
+  @if not unitless($px) {
+    $px: strip-units($px);
   }
+  @if not unitless($default-font-size) {
+    $base-val: strip-units($default-font-size);
+  }
+  @return ($px / $default-font-size) * 1em;
+}
+
+/// Calculate rems from a px value, from the Juice library
+/// @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @author https://github.com/kjbrum
+/// @return {String} The value, minus the unit
+@function px2rem($px, $default-font-size: 16px) {
+  // strip units first
+  @if not unitless($px) {
+    $px: strip-units($px);
+  }
+  @if not unitless($default-font-size) {
+    $base-val: strip-units($default-font-size);
+  }
+  @return ($px / $default-font-size) * 1rem;
+}
+
+///REM to Pixels
+///The REM CSS unit is widely supported on most modern
+///browsers but it's not supported in IE8 and lower browsers,
+///for unit values to work in both modern browsers and
+///IE8 we will need to duplicate the property in the CSS
+///
+///@link http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @example
+/// .box
+/// {
+///   @include rem2px(font-size, 1.4);
+/// }
+@mixin rem2px($property, $sizeValue: 1.6) {
+  @if not unitless($sizeValue) {
+    $sizeValue: strip-units($sizeValue);
+  }
+  #{$property}: ($sizeValue * 10) + px;
+  #{$property}: $sizeValue + rem;
+}

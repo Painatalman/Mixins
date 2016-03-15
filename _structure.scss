@@ -1,0 +1,7 @@
+//A function to generate a centered wrapper with maximum width, based on whichever grid
+//@param  {String} $grid: "bootstrap"   The type of grid. May include "bootstrap" or "foundation"
+@mixin splash-wrapper($grid: "bootstrap") {
+    width: 90%;
+    max-width: 1170px;
+    margin: auto;
+}
