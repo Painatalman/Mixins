@@ -1,0 +1,19 @@
+/// BEM Element creator
+/// Add a BEM element
+/// @group methodologies
+/// @param  {string} $element - element name
+@mixin bem-element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+/// BEM Modifier
+/// Add a BEM modifier
+/// @group methodologies
+/// @param  {string} $modifier - modifier suffix
+@mixin bem-modifier($modifier) {
+  &--#{modifier} {
+    @content;
+  }
+}

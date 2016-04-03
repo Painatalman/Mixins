@@ -1,0 +1,78 @@
+////
+/// Helper Mixins
+/// ======
+///
+/// General-purpose Mixins for various purposes
+///
+
+/// Tint
+/// Slightly lighten a color
+/// @group helpers
+///@param {Color} $color color to tint
+///@param {Number} $percentage percentage of `$color` in returned color
+///@return {Color}
+///@author Hugo Giraudel
+///@source http://www.sitepoint.com/dont-use-compass-anymore/
+@function tint($color, $percentage) {
+  @return mix($color, white, $percentage);
+}
+
+/// Shade
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color color to shade
+/// @param {Number} $percentage percentage of `$color` in returned color
+/// @return {Color}
+/// @author Hugo Giraudel
+/// @source http://www.sitepoint.com/dont-use-compass-anymore/
+@function shade($color, $percentage) {
+  @return mix($color, black, $percentage);
+}
+
+///  Create a random color (with parameters in rgb)
+///  @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+///  @author https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @param  {number} $min: 0  The minimum value for each color value (rgb)
+/// @param  {number} $max: 255  The maximum value for each color value (rgb)
+/// @param  {number} $alpha: 1  Transparency value (from 0 to 1)
+@function random-color($min: 0, $max: 255, $alpha: 1) {
+  @if $min < 0 {
+    $min: -1;
+  } @else {
+    $min: $min - 1;
+  }
+  @if $max > 255 {
+    $max: 256;
+  } @else {
+    $max: $max + 1;
+  }
+  $red: random($max) + $min;
+  $green: random($max) + $min;
+  $blue: random($max) + $min;
+  @return rgba($red, $green, $blue, $alpha);
+}
+
+/// Background gradient
+/// Generate a gradient with horizontal or vertical orientation.
+/// @source http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @group colors
+/// @author Paulund
+/// @param  {Color} $startColor   The starting (left or top) color
+/// @param  {Color} $endColor     The ending (right or bottom) color
+/// @param  {'vertical' | 'horizontal'} $orientation: 'vertical'            The orientation of the gradient. Currently only supporting 'vertical' and 'horizontal' values
+@mixin background-gradient($startColor, $endColor, $orientation: 'vertical') {
+  background: $startColor;
+  @if $orientation=='vertical' {
+    background: -webkit-linear-gradient(top, $startColor, $endColor);
+    background: linear-gradient(to bottom, $startColor, $endColor);
+  }
+  @else if $orientation=='horizontal' {
+    background: -webkit-linear-gradient(left, $startColor, $endColor);
+    background: linear-gradient(to right, $startColor, $endColor);
+  }
+  @else {
+    background: -webkit-radial-gradient(center, ellipse cover, $startColor, $endColor);
+    background: radial-gradient(ellipse at center, $startColor, $endColor);
+  }
+}
+

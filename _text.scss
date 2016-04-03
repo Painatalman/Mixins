@@ -1,0 +1,59 @@
+/// ## Font Smoothing
+/// Antialiases the font, required for some osx computers, apparently, removing blurring effect from it
+/// @access public
+@mixin font-smoothing() {
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/// ## Header wrapping
+/// Wrapping for grouping rules for all headings
+/// @access public
+/// @link http://stackoverflow.com/questions/7539125/css-target-all-h-tags
+@mixin headings {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @content;
+  }
+}
+
+///Link coloring mixin
+/// From the original source:
+/// The idea behind this mixin is that no defaults are declared in the arguments so that we are kind of forced in a friendly way to declare all 4 states of our links.
+/// The :focus and :active pseudo-classes are usually declared together. Feel free to separate them if you want to do so.
+/// One note about this mixin, is that it can be applied to any HTML element, not only links.
+/// @author Ricardo Zea
+/// @group elements
+/// @link http://codepen.io/ricardozea/pen/wMyZQe
+/// @param  {color} $link    the default link color
+/// @param  {color} $visited the color to be displayed on visited state
+/// @param  {color} $hover   the color to be displayed on hover
+/// @param  {color} $active  the color to be displayed when active
+/// @param  {color} $focus  the color to be displayed on focus (by default, it is the same as active)
+/// @return {group of rules}          Group of rules for coloring the linking element based on the provided colors
+/// @example scss - Link colors
+/// a {
+/// @include link-colors(orange, blue, yellow, red);
+/// }
+@mixin link-colors ($link, $visited, $hover, $active, $focus:$active) {
+  & {
+    color: $link;
+    &:visited {
+      color: $visited;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active {
+      color: $active;
+    }
+    &:focus {
+      color: $focus;
+    }
+  }
+}

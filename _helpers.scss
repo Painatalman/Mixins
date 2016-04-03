@@ -1,0 +1,56 @@
+///
+///Clearfix helper
+///Use the below mixin for quickly clear fixing your HTML elements.
+///@link http://www.paulund.co.uk/sass-mixins-get-started-next-project
+///@example
+/// .box
+/// {
+///   @include clearfix;
+/// }
+@mixin clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        content: ' ';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+///Size mixin
+///Define the size of an element
+/// @author Paulund
+/// @url http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @example
+///.box
+///{
+///  @include size(300px);
+///}
+/// @example
+///.box
+///{
+///  @include size(300px, 600px);
+///}
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+///@deprecated this function is now included in the _functions.scss file
+///## REM to Pixels
+///The REM CSS unit is widely supported on most modern
+///browsers but it's not supported in IE8 and lower browsers,
+///for unit values to work in both modern browsers and
+///IE8 we will need to duplicate the property in the CSS
+///
+///@link http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @example
+/// .box
+/// {
+///   @include rem2px(font-size, 1.4);
+/// }
+@mixin rem2px($property, $sizeValue: 1.6) {
+    #{$property}: ($sizeValue * 10) + px;
+    #{$property}: $sizeValue + rem;
+}

@@ -1,0 +1,82 @@
+/// Breakpoint definition
+/// Custom Breakpoints, based on bootstrap grid (by default)
+/// @author Paulund
+/// @link http://www.paulund.co.uk/media-query-sass-mixin
+///  @param  {Enumeration} [$breakpoint: xs] The breakpoint in question. Can be either xs, sm, md or lg
+ /// @group media queries
+@mixin breakpoint($breakpoint: xs) {
+
+    $sizes: ( sm: 768, md: 992, lg: 1200);
+    $sizes-min: (sm: (map_get($sizes,sm) - 1 ), md:(map_get($sizes,md) - 1), lg:(map_get($sizes,lg) - 1));
+    // um regex usado em sublime text
+    // FIND WHAT: \$sizes\.(md|sm|lg)
+    // REPLACE WITH map_get($sizes,$1)
+    $mq-xs: "(max-width: #{map_get($sizes-min,sm)}px)";
+    $mq-sm: "(min-width: #{map_get($sizes,sm)}px) and (max-width: #{map_get($sizes-min,md)}px)";
+    $mq-md: "(min-width: #{map_get($sizes,md)}px) and (max-width: #{map_get($sizes-min,lg)}px)";
+    $mq-lg: "(min-width: #{map_get($sizes,lg)}px)";
+    @if $breakpoint==xs {
+        @media #{$mq-xs} {
+            @content;
+        }
+    }
+    @else if $breakpoint==sm {
+        @media #{$mq-sm} {
+            @content;
+        }
+    }
+    @else if $breakpoint==md {
+        @media #{$mq-md} {
+            @content;
+        }
+    }
+    @else if $breakpoint==lg {
+        @media #{$mq-lg} {
+            @content;
+        }
+    }
+}
+
+/// Custom Breakpoint
+ /// Define a custom breakpoint with min and max width
+ /// @param  {number} $min: false         Minimum size, in pixels
+ /// @param  {number} $max: false         Maximum size, in pixels
+ /// @group media queries
+@mixin breakpoint-custom($min: false, $max: false) {
+  @if ($min) {
+    @if ($max) {
+      @media (min-width: #{$min}px) and (max-width: #{$max}px){
+        @content;
+      }
+    }
+    @else {
+      @media (min-width: #{$min}px) {
+        @content;
+      }
+    }
+  }
+  @else if ($max) {
+    @media (max-width: #{$max}px){
+        @content;
+      }
+  }
+}
+
+///Visible until
+ /// Toggle visibility until a certain limit
+ /// @param  {String} $selector A selector to define which class it will be applied to
+ /// @param  {Number} $size:    768           The maximum size limit until which the selector will be visible (in pixels)
+ /// @example 
+ /// @include visible-until ("#image-base")
+ /// @example 
+ /// @include visible-until (".image", 500)
+ /// @group media queries
+@mixin visible-until($selector, $size: 768) {
+  #{$selector} {
+    display: none;
+  }
+
+  @media (max-width: #{$size}px) {
+    display: inherit;
+  }
+}
