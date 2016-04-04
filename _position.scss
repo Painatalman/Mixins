@@ -35,6 +35,31 @@
     }
 }
 
+/// Chris Coyier's Centering In the Unknown Centering solution
+/// @url https://css-tricks.com/centering-in-the-unknown/
+/// @param  {selector} $centered-child-selector the child selector
+/// @pre This mixin MUST be used in the container
+@mixin inline-centering-container($centered-child-selector) {
+  text-align: center;
+
+  /* May want to do this if there is risk the container may be narrower than the element inside */
+  white-space: nowrap;
+
+  &::before {
+    display: inline-block;
+    height: 100%;
+    white-space: nowrap;
+    content: '';
+    vertical-align: middle;
+    // margin-right: -0.25em;
+  }
+
+  & > #{$centered-child-selector} {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
 /// Position
  /// Define the position of an element quickly
  /// @param  {String} $type    The value for the position attribute
