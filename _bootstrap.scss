@@ -1,0 +1,17 @@
+/// Removes gutters from bootstrap rows and columns which end up being children of the component this mixin is called on
+/// @link http://stackoverflow.com/questions/16489307/how-to-remove-gutter-space-for-a-specific-div-only-bootstrap/21282059#21282059
+/// @todo: implement this for other bootstrap versions, if needed
+@mixin no-gutter($version: 3) {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  [class^="col-"]:not(:first-child),
+  [class^="col-"]:not(:last-child),
+  {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
