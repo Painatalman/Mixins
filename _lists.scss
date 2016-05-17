@@ -31,3 +31,12 @@
     }
   }
 }
+
+/// List reset mixin
+/// Used for removing bullets and left padding from a list
+/// @param      {unit}  $padding-left: 0 The left padding left. Zero by default
+/// @todo set it to support left or right floating lists
+@mixin list-reset($padding-left: 0) {
+  list-style-type: none;
+  padding-left: $padding-left;
+}
