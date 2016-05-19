@@ -1,6 +1,6 @@
-/// Removes gutters from bootstrap rows and columns which end up being children of the component this mixin is called on
+ /// Removes gutters from bootstrap rows and columns which end up being children of the component this mixin is called on
 /// @link http://stackoverflow.com/questions/16489307/how-to-remove-gutter-space-for-a-specific-div-only-bootstrap/21282059#21282059
-/// @todo: implement this for other bootstrap versions, if needed
+/// @todo implement this for other bootstrap versions, if needed
 @mixin no-gutter($version: 3) {
   .row {
     margin-left: 0;
@@ -15,3 +15,18 @@
   }
 }
 
+/// Sometimes you want to do this because the table element's columns have matched height as default behavior. You'll have to adjust this a bit based on what size column you're using. You'll also notice I adjusted the styles a bit because the columns now have a height (not the custom .box element). If you take this approach, you'll have to plan for this.
+/// @link https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
+/// @todo test
+@mixin equal-height-columns($class-name:".is-table-row") {
+  @media only screen and (min-width : 768px) {
+      #{$selector} {
+          display: table;
+      }
+      #{$selector}[class*="col-"] {
+          float: none;
+          display: table-cell;
+          vertical-align: top;
+      }
+  }
+}
