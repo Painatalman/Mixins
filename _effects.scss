@@ -41,4 +41,14 @@
     box-shadow: 0 0.0625em 0.1875em 0 rgba( $shadow-color, 0.1), 0 0.5em 0 -0.25em shade( $card-color, 5%), 0 0.5em 0.1875em -0.25em rgba( $shadow-color, 0.1), 0 1em 0 -0.5em shade( $card-color, 10%), 0 1em 0.1875em -0.5em rgba( $shadow-color, 0.1);
 }
 
+///
+/// Create a shadow that centers itself around the element it is applied to
+/// @param      {size}  $blur    the third parameter of the box-shadow property
+/// @param      {color}  $color  the final value of the box-shadow property. Defines color
+/// @example
+///   @include box-shadow(22px 22px rgba(0, 0, 0, 0.5));
+@mixin center-shadow($spread, $blur, $color) {
+  box-shadow: 0 0 $spread $blur $color;
+}
+
 
