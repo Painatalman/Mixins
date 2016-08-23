@@ -13,3 +13,13 @@
   padding-left: 0;
   list-style-type: none;
 }
+
+/// Reset Highlighting
+/// Reset outline effect usually given to links and inputs. In chrome, for example, it is a blue blurry outline, whereas in firefox it can be a black outline
+@mixin highlight-reset() {
+  :focus {
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+  }
+}
