@@ -4,6 +4,7 @@
 /// @link http://www.sitepoint.com/theming-form-elements-sass/
 /// @example
 ///  @include placeholder { color: red; }
+///  @todo check whether that @at-root is actually needed
 @mixin placeholder() {
   $placeholders: "::-webkit-input-placeholder" "::-moz-placeholder" ":-moz-placeholder" ":-ms-input-placeholder";
   @each $ph in $placeholders {

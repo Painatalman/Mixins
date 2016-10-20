@@ -11,6 +11,10 @@
       "name": "Mickael Morgado"
     }
   ],
+  "main": "eyeglass-exports.js",
+  "eyeglass": {
+    "exports": "eyeglass-exports.js"
+  },
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
@@ -21,13 +25,16 @@
   "keywords": [
     "sass",
     "scss",
-    "doc",
     "documentation",
+    "eyeglass-module"
   ],
   "bugs": {
     "url": "https://github.com/Painatalman/Mixins/issues"
   },
   "scripts": {
     "run": "sassdoc ."
+  },
+  "dependencies": {
+    "eyeglass": "*"
   }
 }
