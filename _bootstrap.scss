@@ -32,10 +32,10 @@
 /// @todo test
 @mixin equal-height-columns($class-name:".is-table-row") {
   @media only screen and (min-width : 768px) {
-      #{$selector} {
+      #{$class-name} {
           display: table;
       }
-      #{$selector}[class*="col-"] {
+      #{$class-name}[class*="col-"] {
           float: none;
           display: table-cell;
           vertical-align: top;
