@@ -4,15 +4,14 @@
  /// groups of styles for elements with specific states, like "hidden". These are usually started with a verb, like "is"
 
 ///set styles for a hidden element
- ///[hidden description]
-///@param  {boolean} $withDisplay:    true          Defines whether the display is changed or not. Set to true by default.
- ///@param  {boolean} $withOpacity:    true          Defines whether the opacity is changed or not. Set to true by default.
- ///@param {boolean} $withTransition: false Defines whether opacity has transition or not
- ///@param  {time} $transitionTime: 250ms         Transition time
- ///@param  {animation} $transitionType: ease-in       Transition type
- ///@todo: hide and show on custom events, maybe with option to hide based on opacity or display
- ///@todo: set transition time and style
- ///@todo: define states that change opacity
+///@param  {boolean} $withDisplay [true]          Defines whether the display is changed or not. Set to true by default.
+///@param  {boolean} $withOpacity    [true]          Defines whether the opacity is changed or not. Set to true by default.
+///@param {boolean} $withTransition [false] Defines whether opacity has transition or not
+///@param  {time} $transitionTime [250ms]         Transition time
+///@param  {animation} $transitionType [ease-in]       Transition type
+///@todo: hide and show on custom events, maybe with option to hide based on opacity or display
+///@todo: set transition time and style
+///@todo: define states that change opacity
 @mixin is-hidden($withDisplay: true, $withOpacity: true, $withTransition: false, $transitionTime: 250ms, $transitionType: ease-in) {
   @if ($withDisplay == true) {
     display: none;

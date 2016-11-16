@@ -1,5 +1,5 @@
 {
-  "name": "Sass Mixins",
+  "name": "sass-mixins",
   "description": "Overall bunch of mixins in SCSS format",
   "author": {
     "name": "Carlos Batman",
@@ -22,12 +22,13 @@
     "sass",
     "scss",
     "doc",
-    "documentation",
+    "documentation"
   ],
   "bugs": {
     "url": "https://github.com/Painatalman/Mixins/issues"
   },
   "scripts": {
-    "run": "sassdoc ."
+    "run": "sassdoc .",
+    "deploy-to-gh-pages": "git subtree push --prefix sassdoc/ origin gh-pages"
   }
 }

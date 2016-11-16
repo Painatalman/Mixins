@@ -1,6 +1,6 @@
 /// Strip the units from a value, from the Juice library
 /// Basically, it strips divides the value by 1(unit) (hence the multiplication by zero and addition by 1)
-/// @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @link https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
 /// @author https://github.com/kjbrum
 /// @param  {[type]} $font-size: 16px  The body pixel value. By default, it is 16px 
 /// @return {String} The value, minus the unit
@@ -10,8 +10,8 @@
 
 /// Pixels to Em, adapted from 2 authors
 /// Convert pixels to em. By default, the font size of the body is considered to be 16px
-/// @url http://blackbe.lt/useful-sass-functions-converting-px-to-em/
-/// @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @link http://blackbe.lt/useful-sass-functions-converting-px-to-em/
+/// @link https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
 /// @author Dustin Horton
 /// @author https://github.com/kjbrum
 /// @param  {String} $px The pixel value to be converted to em values
@@ -33,7 +33,7 @@
 }
 
 /// Calculate rems from a px value, from the Juice library
-/// @url https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
+/// @link https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
 /// @author https://github.com/kjbrum
 /// @return {String} The value, minus the unit
 @function px2rem($px, $default-font-size: 16px) {

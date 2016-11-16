@@ -1,8 +1,7 @@
- /// Removes gutters from bootstrap rows and columns which end up being children of the component this mixin is called on
+/// Removes gutters from bootstrap rows and columns which end up being children of the component this mixin is called on
 /// @link http://stackoverflow.com/questions/16489307/how-to-remove-gutter-space-for-a-specific-div-only-bootstrap/21282059#21282059
 /// @param $version default bootstrap version. UNUSED for now
 /// @param $all-columns affect all columns equally (no specific rules for first and last child columns)
-
 /// @todo implement this for other bootstrap versions, if needed
 @mixin no-gutter($version: 3, $all-columns: false) {
   .row {
