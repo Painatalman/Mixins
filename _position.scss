@@ -1,9 +1,8 @@
 @import "autoprefix";
 
 /// Center Block (Horizontal)
- /// Centers a block horizontally
- /// @group positioning
- ////
+/// Centers a block horizontally
+/// @group positioning
 @mixin center-element {
     display: block;
     margin-left: auto;
@@ -11,12 +10,12 @@
 }
 
 /// Center Element
- /// Mixin for centering an element, but that will only work inside a non-static element (in terms of positioning)
- /// @group positioning
- /// @param  {Boolean} $vertical:true    Whether you want the element to be centered vertically or not
- /// @param  {Boolean} $horizontal:false Whether you want the element to be centered horizontally or not
- /// @pre Element position must not be static
-/// @requires {mixin} prefix
+/// Mixin for centering an element, but that will only work inside a non-static element (in terms of positioning)
+/// @group positioning
+/// @param  {Boolean} $vertical:true    Whether you want the element to be centered vertically or not
+/// @param  {Boolean} $horizontal:false Whether you want the element to be centered horizontally or not
+/// @requireElement position must not be static
+/// @require {mixin} prefix
 @mixin centering($vertical:true, $horizontal:false) {
     position: absolute;
     @if ($vertical == true and $horizontal == true) {
@@ -36,9 +35,9 @@
 }
 
 /// Chris Coyier's Centering In the Unknown Centering solution
-/// @url https://css-tricks.com/centering-in-the-unknown/
+/// This mixin MUST be used in the container
+/// @link https://css-tricks.com/centering-in-the-unknown/
 /// @param  {selector} $centered-child-selector the child selector
-/// @pre This mixin MUST be used in the container
 @mixin inline-centering-container($centered-child-selector) {
   text-align: center;
 
@@ -61,19 +60,19 @@
 }
 
 /// Position
- /// Define the position of an element quickly
- /// @param  {String} $type    The value for the position attribute
- /// @param  {Size value} $top:    null          Top value
- /// @param  {Size value} $right:  null          Right value
- /// @param  {Size value} $bottom: null          Bottom value
- /// @param  {Size value} $left:   null          Left value
- /// @group positioning
- /// @link source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
- /// @author Paulund
- /// @example
- ///   .box {
- ///     @include position(absolute, 10px, 10px, 10px, 10px);
- ///   }
+/// Define the position of an element quickly
+/// @param  {String} $type    The value for the position attribute
+/// @param  {Size value} $top:    null          Top value
+/// @param  {Size value} $right:  null          Right value
+/// @param  {Size value} $bottom: null          Bottom value
+/// @param  {Size value} $left:   null          Left value
+/// @group positioning
+/// @link source: http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @author Paulund
+/// @example
+///   .box {
+///     @include position(absolute, 10px, 10px, 10px, 10px);
+///   }
 @mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
     position: $type;
     top: $top;

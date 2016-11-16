@@ -2,8 +2,9 @@
 /// Custom Breakpoints, based on bootstrap grid (by default)
 /// @author Paulund
 /// @link http://www.paulund.co.uk/media-query-sass-mixin
-///  @param  {Enumeration} [$breakpoint: xs] The breakpoint in question. Can be either xs, sm, md or lg
- /// @group media queries
+/// @param $breakpoint {Enumeration} [$breakpoint: xs] The breakpoint in question. Can be either xs, sm, md or lg
+/// @group media queries
+/// @todo change this to bs-breakpoint
 @mixin breakpoint($breakpoint: xs) {
 
     $sizes: ( sm: 768, md: 992, lg: 1200);
