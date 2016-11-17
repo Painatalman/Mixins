@@ -24,7 +24,8 @@
 /**
  * Create css to grayscale an image
  * Expects an image to be the affected element
- * It is a mixin adaptation of code provided by Karl Horky at http://www.karlhorky.com/2012/06/cross-browser-image-grayscale-with-css.html
+ * It is a mixin adaptation of code provided by Karl Horky at 
+ /// @link http://www.karlhorky.com/2012/06/cross-browser-image-grayscale-with-css.html
  * @author Karl Horky
  */
 @mixin grayscale($reset:false) {
@@ -38,17 +39,15 @@
     -webkit-filter: grayscale(0%);
   }
 }
-/**
- * A background image of a default 1280x720 resolution depicting either an unsplash placeholder (default) or a placekitten. The cover effect is courtesy of Chris Coyier.
- * @param  {[number]} $image-width:  1280          [The default image width resolution]
- * @param  {[number]} $image-height: 720           [The default image height resolution]
- * @param  {[boolean]} $placekitten:  false         [if set to true, it will render a placekitten. Otherwise, it will get an unsplash placeholder instead]
- * @param  {[boolean]} $grayscale:    false         [description]
- * @param  {[url]} $image-url:    ""         [If set to anything other than "", this will become the url for the background image itself]
- * @return {[css]}                [set of css rules with background image and cover]
- * @url https://css-tricks.com/perfect-full-page-background-image/
- */
-@mixin background-image($image-width: 1280, $image-height: 720, $placekitten: false, $grayscale: false, $image-url:""){
+/// A background image of a default 1280x720 resolution depicting either an unsplash placeholder (default) or a placekitten. The cover effect is courtesy of Chris Coyier.
+/// @param  {[url]} $image-url:    ""         [If set to anything other than "", this will become the url for the background image itself]
+/// @param  {[number]} $image-width:  1280          [The default image width resolution]
+/// @param  {[number]} $image-height: 720           [The default image height resolution]
+/// @param  {[boolean]} $placekitten:  false         [if set to true, it will render a placekitten. Otherwise, it will get an unsplash placeholder instead]
+///@param  {[boolean]} $grayscale:    false         [description]
+/// @return {[css]}                [set of css rules with background image and cover]
+/// @url https://css-tricks.com/perfect-full-page-background-image/
+@mixin background-image($image-url:"", $image-width: 1280, $image-height: 720, $placekitten: false, $grayscale: false){
   $url: "";
 
   @if ($image-url != "") {
