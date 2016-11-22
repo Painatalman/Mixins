@@ -46,8 +46,8 @@
 /// @param      {size}  $blur    the third parameter of the box-shadow property
 /// @param      {color}  $color  the final value of the box-shadow property. Defines color
 /// @example
-///   @include box-shadow(22px 22px rgba(0, 0, 0, 0.5));
-@mixin center-shadow($spread, $blur, $color) {
+///   @include box-shadow(20px,5px,rgba(0, 0, 0, 0.5));
+@mixin center-shadow($spread:20px, $blur:0px, $color:rgba(0, 0, 0, 0.5)) {
   box-shadow: 0 0 $spread $blur $color;
 }
 
