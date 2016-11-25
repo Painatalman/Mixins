@@ -1,6 +1,5 @@
 /// ## Font Smoothing
 /// Antialiases the font, required for some osx computers, apparently, removing blurring effect from it
-/// @access public
 @mixin font-smoothing() {
   font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,7 +8,6 @@
 
 /// ## Header wrapping
 /// Wrapping for grouping rules for all headings
-/// @access public
 /// @link http://stackoverflow.com/questions/7539125/css-target-all-h-tags
 @mixin headings {
   h1,
@@ -30,11 +28,11 @@
 /// @author Ricardo Zea
 /// @group elements
 /// @link http://codepen.io/ricardozea/pen/wMyZQe
-/// @param  {color} $link    the default link color
-/// @param  {color} $visited the color to be displayed on visited state
-/// @param  {color} $hover   the color to be displayed on hover
-/// @param  {color} $active  the color to be displayed when active
-/// @param  {color} $focus  the color to be displayed on focus (by default, it is the same as active)
+/// @param  {color} $link -   the default link color
+/// @param  {color} $visited - the color to be displayed on visited state
+/// @param  {color} $hover -   the color to be displayed on hover
+/// @param  {color} $active -  the color to be displayed when active
+/// @param  {color} $focus -  the color to be displayed on focus (by default, it is the same as active)
 /// @return {group of rules}          Group of rules for coloring the linking element based on the provided colors
 /// @example scss - Link colors
 /// a {
@@ -55,5 +53,21 @@
     &:focus {
       color: $focus;
     }
+  }
+}
+
+/// Adds a line under the content of this element, in a more manageable way than traditional text-decoration
+/// @group decoration
+/// @param  {color} $thickness [1px] - the line's thickness
+/// @param  {color} $width [99%] - the line's width
+/// @param  {color} $color [inherit] - the line's color
+@mixin underlined($thickness: 1px, $width: 99%, $color: inherit) {
+  &::after {
+    content: "";
+    height: $thickness;
+    display: block;
+    margin: auto;
+    width: $width;
+    background: $color;
   }
 }
