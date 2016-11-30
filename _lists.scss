@@ -1,10 +1,9 @@
-////
- /// Mixins
- /// ======
- ///
- /// Mixins related to lists and list items
- ///
- ////
+/// Mixins
+/// ======
+///
+/// Mixins related to lists and list items
+
+@import "./reset";
 
 /// Colored Bullets
  /// Colored bullet lists INSIDE a specific div/container/section/whatever
@@ -39,4 +38,21 @@
 @mixin list-reset($padding-left: 0) {
   list-style-type: none;
   padding-left: $padding-left;
+}
+
+
+/// Inline list mixin
+/// Used for removing bullets and left padding from a list
+/// @param {true|false}  $with-reset: determines whether to use the reset or not for removing the style-type and padding from lists
+/// @todo set it to support left or right floating lists
+@mixin list-inline($with-reset: true) {
+  @include list-reset();
+
+  & > li {
+    float: left;
+
+    display: block;
+  }
+
+  @include clearfix();
 }
