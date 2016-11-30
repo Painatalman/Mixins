@@ -43,3 +43,16 @@
     }
 }
 
+
+/// Min-height reset
+/// Forces the web page to have, at least, 100% of the window's height
+/// @example
+///   @include body-min-window-height();
+/// @todo get a better name. The current one sucks
+@mixin body-min-window-height() {
+  html, body {
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+}
