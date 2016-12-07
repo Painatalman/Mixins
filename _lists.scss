@@ -56,3 +56,11 @@
 
   @include clearfix();
 }
+
+/// Adds rules to set a definition list as having inline pairs
+/// @author [krainert](http://stackoverflow.com/users/1484997/krainert)
+/// @link http://stackoverflow.com/questions/20692424/definition-list-with-inline-pairs
+@mixin inline-pairs-for-dl {
+  dt, dd { float: left }
+  dt { clear:both }
+}
