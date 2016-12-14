@@ -22,8 +22,8 @@
 @mixin overlay(
     $color                :   black, 
     $opacity              :   0.95, 
-    $relative-to-window   :   false, 
-    $zindex               :   none
+    $zindex               :   auto,
+    $relative-to-window   :   false 
   ){
    @if ($relative-to-window) {  position: fixed;    }
    @else                     {  position: absolute; }

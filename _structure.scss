@@ -1,7 +1,24 @@
-//A function to generate a centered wrapper with maximum width, based on whichever grid
-//@param  {String} $grid: "bootstrap"   The type of grid. May include "bootstrap" or "foundation"
+/// A function to generate a centered wrapper with maximum width, based on whichever grid
+/// @param  {String} $grid: "bootstrap"   The type of grid. May include "bootstrap" or "foundation"
+/// @group layout
 @mixin splash-wrapper($grid: "bootstrap") {
     width: 90%;
     max-width: 1170px;
     margin: auto;
+}
+
+/// Provide width for columns up to $max-ncols giving them a relative size
+/// @group layout
+/// @param  {String} $selector:li The selector for the items that will be come columns
+/// @param  {Number} $max-ncols:4    The maximum number of columns expected
+/// @link http://lea.verou.me/2011/01/styling-children-based-on-their-number-with-css3/
+/// @example
+/// @include column-width(".menu__column");
+@mixin column-width($selector: "li", $max-ncols: 4) {
+  @for $i from 1 through $max-ncols {
+    #{$selector}:first-child:nth-last-child(#{$i}),
+    #{$selector}:first-child:nth-last-child(#{$i}) ~ #{$selector} {
+      width: 100% / $i;
+    }
+  }
 }

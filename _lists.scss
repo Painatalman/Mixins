@@ -1,18 +1,17 @@
-////
- /// Mixins
- /// ======
- ///
- /// Mixins related to lists and list items
- ///
- ////
+/// Mixins
+/// ======
+///
+/// Mixins related to lists and list items
+
+@import "./reset";
 
 /// Colored Bullets
- /// Colored bullet lists INSIDE a specific div/container/section/whatever
- /// @param  {color} $color:        tomato        Default bullet color
- /// @param  {unit} $padding-left: 20px          Default padding for li items
- /// @param  {string} $bullet-icon:  '2022'        Bullet icon character
- /// @return {css}                set of rules for the ul and li tags
- /// @pre Must be applied to an element that contains ul and li
+/// Colored bullet lists INSIDE a specific div/container/section/whatever
+/// @param  {color} $color:        tomato        Default bullet color
+/// @param  {unit} $padding-left: 20px          Default padding for li items
+/// @param  {string} $bullet-icon:  '2022'        Bullet icon character
+/// @return {css}                set of rules for the ul and li tags
+/// @pre Must be applied to an element that contains ul and li
 @mixin colored-bullet-lists($color: tomato, $padding-left: 20px, $bullet-icon: '\2022') {
   ul {
     list-style-type: none;
@@ -39,4 +38,29 @@
 @mixin list-reset($padding-left: 0) {
   list-style-type: none;
   padding-left: $padding-left;
+}
+
+
+/// Inline list mixin
+/// Used for removing bullets and left padding from a list
+/// @param {true|false}  $with-reset: determines whether to use the reset or not for removing the style-type and padding from lists
+/// @todo set it to support left or right floating lists
+@mixin list-inline($with-reset: true) {
+  @include list-reset();
+
+  & > li {
+    float: left;
+
+    display: block;
+  }
+
+  @include clearfix();
+}
+
+/// Adds rules to set a definition list as having inline pairs
+/// @author [krainert](http://stackoverflow.com/users/1484997/krainert)
+/// @link http://stackoverflow.com/questions/20692424/definition-list-with-inline-pairs
+@mixin inline-pairs-for-dl {
+  dt, dd { float: left }
+  dt { clear:both }
 }

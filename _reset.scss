@@ -1,5 +1,5 @@
 /*
- * Mixins
+ * Resets
  * ======
  *
  * Mixins for resetting styles
@@ -8,10 +8,11 @@
 
 /// Reset Lists
 /// Removes default bullet and padding from a list (to be used in ul elements)
-/// @group lists
-@mixin list-reset {
-  padding-left: 0;
+/// @deprecated This mixin will be moved to the lists file
+/// @group resets
+@mixin list-reset($padding-left: 0) {
   list-style-type: none;
+  padding-left: $padding-left;
 }
 
 /// Reset Highlighting
@@ -20,5 +21,38 @@
   :focus {
     outline-style: none;
     box-shadow: none;
+  }
+}
+
+/// Clearfix helper
+/// Use the below mixin for quickly clear fixing your HTML elements.
+/// @link http://www.paulund.co.uk/sass-mixins-get-started-next-project
+/// @example
+/// .box
+/// {
+///   @include clearfix;
+/// }
+@mixin clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        content: ' ';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+/// Min-height reset
+/// Forces the web page to have, at least, 100% of the window's height
+/// @example
+///   @include body-min-window-height();
+/// @todo get a better name. The current one sucks
+@mixin body-min-window-height() {
+  html, body {
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
   }
 }
