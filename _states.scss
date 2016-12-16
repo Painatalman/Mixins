@@ -1,7 +1,8 @@
+////
 /// States
- /// ======
- ///
- /// groups of styles for elements with specific states, like "hidden". These are usually started with a verb, like "is"
+/// groups of styles for elements with specific states, like "hidden". These are usually started with a verb, like "is"
+/// @group modifiers
+////
 
 ///set styles for a hidden element
 ///@param  {boolean} $withDisplay [true]          Defines whether the display is changed or not. Set to true by default.

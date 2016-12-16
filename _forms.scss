@@ -3,7 +3,7 @@
 /// @group forms
 /// @link http://www.sitepoint.com/theming-form-elements-sass/
 /// @example
-///  @include placeholder { color: red; }
+///   @include placeholder { color: red; }
 @mixin placeholder() {
   $placeholders: "::-webkit-input-placeholder" "::-moz-placeholder" ":-moz-placeholder" ":-ms-input-placeholder";
   @each $ph in $placeholders {
