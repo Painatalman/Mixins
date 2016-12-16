@@ -1,0 +1,57 @@
+////
+/// Transitions and Animation Effects
+/// A section dedicated to animation-and-transition-related mixins
+////
+
+/// Fade-in-fade-out transition effect
+/// A mixin for showing and hiding stuff based on the opacity and visibility properties
+/// @group effects
+/// @param string $transition-delay: '500ms' The default animation duration
+/// @param string $transition-type: 'ease-in-out' The default transition type for the animation
+/// @param string $fade-in-selector: '.is-active' A selector that will be used along with the container selector to refer to the class for showing the menu
+/// @param string $fade-out-selector: '.is-hidden' A selector that will be used along with the container selector to refer to the class for hiding the menu
+/// @param boolean $is-active-by-default: true Defines whether the item will be in the "shown" or "hidden" state by default
+/// @link http://www.greywyvern.com/?post=337
+/// @example
+/// .main-menu {
+///  @include fade-in-fade-out;
+/// }
+@mixin fade-in-fade-out(
+  $transition-delay: '500ms',
+  $transition-type: 'ease-in-out',
+  $fade-in-selector:'.is-active',
+  $fade-out-selector:'.is-hidden',
+  $is-active-by-default:true
+) {
+
+  transition: visibility 0s linear, opacity #{$transition-delay} #{$transition-type};
+
+  @if ($is-active-by-default == true) {
+  opacity: 1;
+  visibility: visible;
+
+  transition-delay: 0s, 0s;
+  }
+  @else {
+  opacity: 0;
+  visibility: hidden;
+
+  transition-delay: #{$transition-delay}, 0s;
+  }
+
+  &#{$fade-in-selector} {
+    // SHAME: code repetition from above
+    opacity: 1;
+    visibility: visible;
+
+    transition-delay: 0s, 0s;
+  }
+
+  &#{$fade-out-selector} {
+    // SHAME: code repetition from above
+    opacity: 0;
+    visibility: hidden;
+
+    transition-delay: #{$transition-delay}, 0s;
+  }
+}
