@@ -1,7 +1,9 @@
-/// Mixins
-/// ======
-///
-/// Mixins related to lists and list items
+////
+/// Lists
+/// Mixins related to lists
+/// @group lists
+/// @author Painatalman
+////
 
 @import "./reset";
 
@@ -10,7 +12,6 @@
 /// @param  {color} $color:        tomato        Default bullet color
 /// @param  {unit} $padding-left: 20px          Default padding for li items
 /// @param  {string} $bullet-icon:  '2022'        Bullet icon character
-/// @return {css}                set of rules for the ul and li tags
 /// @pre Must be applied to an element that contains ul and li
 @mixin colored-bullet-lists($color: tomato, $padding-left: 20px, $bullet-icon: '\2022') {
   ul {
@@ -34,10 +35,17 @@
 /// List reset mixin
 /// Used for removing bullets and left padding from a list
 /// @param      {unit}  $padding-left: 0 The left padding left. Zero by default
+/// @param      {true|false}  $remove-before-content: false If set to true
 /// @todo set it to support left or right floating lists
-@mixin list-reset($padding-left: 0) {
+@mixin list-reset($padding-left: 0, $remove-before-content: false) {
   list-style-type: none;
   padding-left: $padding-left;
+
+  @if ($remove-before-content) {
+  & > li::before  {
+      content: none;
+    }
+  }
 }
 
 
