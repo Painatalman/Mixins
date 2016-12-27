@@ -35,3 +35,12 @@
     background-repeat: no-repeat;
   }
 }
+
+/// Input reset
+/// Removes the following from each input:
+/// - shadow on focus
+@mixin input-reset {
+  &:focus {
+    box-shadow: none;
+  }
+}
