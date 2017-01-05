@@ -9,10 +9,10 @@
 
 /// Colored Bullets
 /// Colored bullet lists INSIDE a specific div/container/section/whatever
+/// This must be applied to an element that contains ul and li
 /// @param  {color} $color:        tomato        Default bullet color
 /// @param  {unit} $padding-left: 20px          Default padding for li items
 /// @param  {string} $bullet-icon:  '2022'        Bullet icon character
-/// @pre Must be applied to an element that contains ul and li
 @mixin colored-bullet-lists($color: tomato, $padding-left: 20px, $bullet-icon: '\2022') {
   ul {
     list-style-type: none;

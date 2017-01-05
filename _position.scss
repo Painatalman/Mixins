@@ -17,10 +17,10 @@
 
 /// Center Element
 /// Mixin for centering an element, but that will only work inside a non-static element (in terms of positioning)
+/// For this mixin to work, the element position must not be static
 /// @group positioning
 /// @param  {Boolean} $vertical:true    Whether you want the element to be centered vertically or not
 /// @param  {Boolean} $horizontal:false Whether you want the element to be centered horizontally or not
-/// @requireElement position must not be static
 /// @require {mixin} prefix
 @mixin centering($vertical:true, $horizontal:false) {
     position: absolute;

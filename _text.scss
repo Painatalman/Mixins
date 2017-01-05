@@ -40,11 +40,10 @@
 /// @param  {color} $hover -   the color to be displayed on hover
 /// @param  {color} $active -  the color to be displayed when active
 /// @param  {color} $focus -  the color to be displayed on focus (by default, it is the same as active)
-/// @return {group of rules}          Group of rules for coloring the linking element based on the provided colors
-/// @example scss - Link colors
-/// a {
-/// @include link-colors(orange, blue, yellow, red);
-/// }
+/// @example
+///   a {
+///    @include link-colors(orange, blue, yellow, red);
+///   }
 @mixin link-colors ($link, $visited, $hover, $active, $focus:$active) {
   & {
     color: $link;
