@@ -1,3 +1,10 @@
+////
+/// Form-related mixins
+/// This includes inputs, select boxes, ect...
+/// @group forms
+/// @author Carlos Batman
+////
+
 /// Placeholder
 /// A mixin for customizing placeholder text across multiple browsers.
 /// @group forms
@@ -14,7 +21,7 @@
 }
 
 /// Select arrow
-/// Select arrow mixin
+/// Select arrow mixin for appending an arrow to your select boxes after replacing your default styling
 /// @param  {String} $select-arrow:   'ansvg' url value for the select arrow
 /// @param  {List|Number|String} $select-padding: 0       Set of values for placeholder
 /// @group forms

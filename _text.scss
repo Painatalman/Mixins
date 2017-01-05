@@ -1,4 +1,11 @@
-/// ## Font Smoothing
+////
+/// Mixins related to text manipulation
+/// This also includes resets and the styling of heading elements
+/// @group text
+/// @author Carlos Batman
+////
+
+/// Font Smoothing
 /// Antialiases the font, required for some osx computers, apparently, removing blurring effect from it
 @mixin font-smoothing() {
   font-smoothing: antialiased;
@@ -6,7 +13,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/// ## Header wrapping
+/// Header wrapping
 /// Wrapping for grouping rules for all headings
 /// @link http://stackoverflow.com/questions/7539125/css-target-all-h-tags
 @mixin headings {
@@ -20,7 +27,7 @@
   }
 }
 
-///Link coloring mixin
+/// Link coloring mixin
 /// From the original source:
 /// The idea behind this mixin is that no defaults are declared in the arguments so that we are kind of forced in a friendly way to declare all 4 states of our links.
 /// The :focus and :active pseudo-classes are usually declared together. Feel free to separate them if you want to do so.

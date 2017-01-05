@@ -52,4 +52,35 @@
   box-shadow: 0 0 $spread $blur $color;
 }
 
+/// Overlay
+/// Overlay for banners / sliders that allow you to use custom color, opacity, and absolute or fixed postion by switching $relative-to-window value.
+/// @param  {decimal} $opacity:0.95 Opacity level. 0.95 by default.
+/// @param  {black|white} $color:black  Overlay color. For now, it only supports black and white. It is black by default or if value is not recognized.
+/// @param  {string} $zindex:none  Optional z-index. None by default
+/// @deprecated this element will be moved to the effects subsection
+/// @example:
+///.single-item {
+///  position: relative;
+///  &:before {
+///    content: '';
+///    @include overlay($opacity:.3);
+///  }
+///}
+@mixin overlay(
+    $color                :   black,
+    $opacity              :   0.95,
+    $zindex               :   auto,
+    $relative-to-window   :   false
+  ){
+   @if ($relative-to-window) {  position: fixed;    }
+   @else                     {  position: absolute; }
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $zindex;
+
+    background: $color;
+    opacity: $opacity;
+}
 

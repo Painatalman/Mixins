@@ -1,3 +1,10 @@
+////
+/// Mixins for debugging purposes
+/// @group prefixing
+/// @author Paulind
+/// @author Carlos Batman
+////
+
 /// Logs
 /// Displays an error or warning message
 /// @param  {String} $message Error message
@@ -12,18 +19,13 @@
   }
 }
 
-/// Reporting mixins
-/// ======
-///
+/// Reporting mixin
 /// Error logging and other best-practices
-///
-/// Tips can be found here
-///  + http://www.sitepoint.com/using-sasss-error-warn-and-debug-directives/
-/// Error logging with fallback for SASS 3.2 (?)
 /// @param  {String} $message The error message
 /// @example
 ///   @include log('Oops, something is wrong with what you just did!');
 /// @link http://www.sitepoint.com/using-error-responsibly-in-sass/
+/// @link http://www.sitepoint.com/using-sasss-error-warn-and-debug-directives/
 /// @author: Hugo Giraudel
 @mixin error-log($message) {
   // in sass 3.2, this returns true although feature-exists is not fully supported until sass 3.3

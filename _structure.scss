@@ -1,11 +1,8 @@
-/// A function to generate a centered wrapper with maximum width, based on whichever grid
-/// @param  {String} $grid: "bootstrap"   The type of grid. May include "bootstrap" or "foundation"
+////
+/// Mixins related to layouts and structuring blocks
 /// @group layout
-@mixin splash-wrapper($grid: "bootstrap") {
-    width: 90%;
-    max-width: 1170px;
-    margin: auto;
-}
+/// @author Painatalman
+////
 
 /// Provide width for columns up to $max-ncols giving them a relative size
 /// @group layout

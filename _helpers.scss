@@ -1,8 +1,15 @@
-/// Clearfix helper
-/// Use the below mixin for quickly clear fixing your HTML elements.
-/// @link http://www.paulund.co.uk/sass-mixins-get-started-next-project
+////
+/// Helper mixins
+/// Uncategorized or general-purpose mixins
+/// @group helpers
+/// @author Carlos Batman
+////
+
+///Clearfix helper
+///Use the below mixin for quickly clear fixing your HTML elements.
+///@link http://www.paulund.co.uk/sass-mixins-get-started-next-project
 /// @deprecated This mixin will be moved to the reset file
-/// @example
+///@example
 /// .box
 /// {
 ///   @include clearfix;

@@ -1,8 +1,16 @@
+////
+/// General-purpose Functions
+/// Helper functions that may be used in some mixins, or even independently
+/// As functions, they are supposed to always return something
+/// @group functions
+/// @author Carlos Batman
+////
+
 /// Strip the units from a value, from the Juice library
 /// Basically, it strips divides the value by 1(unit) (hence the multiplication by zero and addition by 1)
 /// @link https://github.com/kjbrum/juice/blob/master/dist/_juice.scss
 /// @author https://github.com/kjbrum
-/// @param  {[type]} $font-size: 16px  The body pixel value. By default, it is 16px 
+/// @param  {[type]} $font-size: 16px  The body pixel value. By default, it is 16px
 /// @return {String} The value, minus the unit
 @function strip-units($value) {
   @return $value / ($value * 0 + 1);
@@ -17,9 +25,9 @@
 /// @param  {String} $px The pixel value to be converted to em values
 /// @param  {[type]} $default-font-size: 16px  The body pixel value. By default, it is 14px
 /// @return {String} An em value, along with the unit
-/// @example 
+/// @example
 /// em(12px); // will return 6/7em
-/// @example 
+/// @example
 /// em(20px, 10px); // will return 2em
 @function px2em ($px, $default-font-size: 16px) {
   // strip units first

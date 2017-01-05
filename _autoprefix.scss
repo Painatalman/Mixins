@@ -1,7 +1,14 @@
+////
+/// Prefixer mixins to use in case there's no autoprefixer.
+/// @group prefixing
+/// @author Paulind
+/// @author Carlos Batman
+////
+
 /// Prefixer
 /// Vendor prefix anything... probably!
 /// @author Paulund
-/// @group helpers
+/// @group prefixing
 /// @param  {string} $property - The property to be prefixed
 /// @param  {string} $value - The property value
 /// @param  {list} $vendors [webkit moz ms o] - List of vendor prefixes
@@ -19,9 +26,9 @@
   #{$property}: #{$value};
 }
 
-/// Prefix - Transition 
+/// Prefix - Transition
 /// Autoprefix transition
-/// @group helpers
+/// @group prefixing
 /// @param  {values} $value a group of properties that would be applicable to values
 @mixin transition($value) {
   -webkit-transition: ($value);
@@ -32,7 +39,7 @@
 
 /// Prefix - Background Size
 /// Autoprefixing the background-size property
-/// @group helpers
+/// @group prefixing
 /// @param  {values} $value the default value
 @mixin background-size($value) {
   @include prefix(background-size, $value);
@@ -41,8 +48,9 @@
 /// Prefix - Transform
 /// Autoprefixer for transform.
 /// Depends on the @prefix mixin or on a compass plugin
-/// @requires {mixin} prefix
 /// @param  {value} $value Transform value
+/// @requires {mixin} prefix
+/// @group prefixing
 @mixin transform($value) {
   @include prefix(transform, $value);
 }
@@ -50,8 +58,9 @@
 /// Prefix - transform-origin
 /// Autoprefixer for transform-origin.
 /// Depends on the @prefix mixin or on a compass plugin
-/// @requires {mixin} prefix
 /// @param  {value} $value Transform value
+/// @requires {mixin} prefix
+/// @group prefixing
 @mixin transform-origin($value) {
   @include prefix(transform-origin, $value);
 }
@@ -60,6 +69,7 @@
 /// Autoprefixer for text-shadow
 /// Depends on the @prefix mixin or on a compass plugin
 /// @param  {value} $value Text-shadow value
+/// @group prefixing
 /// @requires {mixin} prefix
 @mixin text-shadow($value) {
   @include prefix(text-shadow, $value);

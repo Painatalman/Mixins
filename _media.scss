@@ -1,18 +1,21 @@
-/**
- * A function to generate a centered wrapper with maximum width, based on whichever grid
- * @param  {String} $grid: "bootstrap"   The type of grid. May include "bootstrap" or "foundation"
- */
+////
+/// Mixins related to media items, like images and video
+/// @group media
+/// @author Carlos Batman
+////
+
+/// Splash Wrapper
+/// A mixin to generate a centered wrapper with maximum width, based on whichever grid
+/// @param  {String} $grid: "bootstrap"   The type of grid. May include "bootstrap" or "foundation"
+/// @deprecated not related to a particular concern and unclear name
 @mixin splash-wrapper($grid: "bootstrap") {
     width: 90%;
     max-width: 1170px;
     margin: auto;
 }
 
-/**
- * Add the necessary css to the ellipsis
- * @return {css} three rules for setting up an ellipsis
- * @source https://css-tricks.com/almanac/properties/t/text-overflow/
- */
+/// Add the necessary css to add an ellipsis shape to text
+/// @link https://css-tricks.com/almanac/properties/t/text-overflow/
 @mixin ellipsis() {
   text-overflow: ellipsis;
 
@@ -21,13 +24,12 @@
   overflow: hidden;
 }
 
-/**
- * Create css to grayscale an image
- * Expects an image to be the affected element
- * It is a mixin adaptation of code provided by Karl Horky at 
- /// @link http://www.karlhorky.com/2012/06/cross-browser-image-grayscale-with-css.html
- * @author Karl Horky
- */
+/// Grayscale effect
+/// Create css to grayscale an image
+/// Expects an image to be the affected element
+/// It is a mixin adaptation of code provided by Karl Horky at
+/// @link http://www.karlhorky.com/2012/06/cross-browser-image-grayscale-with-css.html
+/// @author Karl Horky
 @mixin grayscale($reset:false) {
   @if ($reset != false){
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
@@ -39,13 +41,14 @@
     -webkit-filter: grayscale(0%);
   }
 }
+
+/// Background image (placekitten/unsplash)
 /// A background image of a default 1280x720 resolution depicting either an unsplash placeholder (default) or a placekitten. The cover effect is courtesy of Chris Coyier.
-/// @param  {[url]} $image-url:    ""         [If set to anything other than "", this will become the url for the background image itself]
-/// @param  {[number]} $image-width:  1280          [The default image width resolution]
-/// @param  {[number]} $image-height: 720           [The default image height resolution]
-/// @param  {[boolean]} $placekitten:  false         [if set to true, it will render a placekitten. Otherwise, it will get an unsplash placeholder instead]
-///@param  {[boolean]} $grayscale:    false         [description]
-/// @return {[css]}                [set of css rules with background image and cover]
+/// @param  {[url]} $image-url:"" If set to anything other than "", this will become the url for the background image itself
+/// @param  {[number]} $image-width:1280 The default image width resolution]
+/// @param  {[number]} $image-height: 720 The default image height resolution]
+/// @param  {boolean} $placekitten:  false         [if set to true, it will render a placekitten. Otherwise, it will get an unsplash placeholder instead]
+///@param  {boolean} $grayscale:    false if set to true, returns a grayscale placeholder (in case there is an empty image-url)
 /// @url https://css-tricks.com/perfect-full-page-background-image/
 @mixin background-image($image-url:"", $image-width: 1280, $image-height: 720, $placekitten: false, $grayscale: false){
   $url: "";

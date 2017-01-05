@@ -1,3 +1,9 @@
+////
+/// Mixins related to media queries
+/// @group media queries
+/// @author Carlos Batman
+////
+
 /// Breakpoint definition
 /// Custom Breakpoints, based on bootstrap grid (by default)
 /// @author Paulund
@@ -67,9 +73,9 @@
  /// Toggle visibility until a certain limit
  /// @param  {String} $selector A selector to define which class it will be applied to
  /// @param  {Number} $size:    768           The maximum size limit until which the selector will be visible (in pixels)
- /// @example 
+ /// @example
  /// @include visible-until ("#image-base")
- /// @example 
+ /// @example
  /// @include visible-until (".image", 500)
  /// @group media queries
 @mixin visible-until($selector, $size: 768) {
