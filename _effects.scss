@@ -27,9 +27,9 @@
 /// Gives a card effect due to the impact of a shadow
 /// as seen on http://gsdk.creative-tim.com/
 /// @group components
-@mixin card-up() {
+@mixin card-up($up:-10px) {
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-  @include prefix(transform, translateY(-10px));
+  @include prefix(transform, translateY($up));
 }
 
 
