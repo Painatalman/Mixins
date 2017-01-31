@@ -8,14 +8,23 @@
 /// @group layout
 /// @param  {String} $selector:li The selector for the items that will be come columns
 /// @param  {Number} $max-ncols:4    The maximum number of columns expected
+/// @param  {String|null} $full-on-breakpoint    Set whether the columns should have full width on mobile or not. By default, it is not
 /// @link http://lea.verou.me/2011/01/styling-children-based-on-their-number-with-css3/
 /// @example
 ///   @include column-width(".menu__column");
-@mixin column-width($selector: "li", $max-ncols: 4) {
+@mixin column-width($selector: "li", $max-ncols: 4, $full-on-breakpoint:false) {
   @for $i from 1 through $max-ncols {
     #{$selector}:first-child:nth-last-child(#{$i}),
     #{$selector}:first-child:nth-last-child(#{$i}) ~ #{$selector} {
       width: 100% / $i;
+
+      @if ($full-on-breakpoint) {
+        @media (max-width:#{$full-on-breakpoint}) {
+          width: 100%;
+        }
+      }
     }
+
+
   }
 }
