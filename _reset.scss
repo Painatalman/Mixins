@@ -13,11 +13,21 @@
 }
 
 /// Reset Highlighting
-/// Reset outline effect usually given to links and inputs. In chrome, for example, it is a blue blurry outline, whereas in firefox it can be a black outline
-@mixin highlight-reset() {
-  :focus {
-    outline-style: none;
-    box-shadow: none;
+/// Reset outline effect usually given to links and inputs. In chrome, for example, it is a blue blurry outline, whereas in firefox it can be a black outline.
+/// Frameworks like bootstrap also tend to add some outline to active and focus elements,thus the additional $include-active-state, as well
+/// @param  {Boolean} $include-active-state:false Whether you want the element to be centered horizontally or not
+@mixin highlight-reset($include-active-state: false) {
+  $selectors:':focus';
+
+  @if $include-active-state {
+    $selectors:':focus' ':active' ':active:focus';
+  }
+
+  @each $selector in $selectors {
+    &#{$selector} {
+      outline-style: none;
+      box-shadow: none;
+    }
   }
 }
 
