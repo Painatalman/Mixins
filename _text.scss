@@ -44,7 +44,7 @@
 ///   a {
 ///    @include link-colors(orange, blue, yellow, red);
 ///   }
-@mixin link-colors ($link, $visited, $hover, $active, $focus:$active) {
+@mixin link-colors ($link, $visited:$link, $hover:$visited, $active:$hover, $focus:$active) {
   & {
     color: $link;
     &:visited {

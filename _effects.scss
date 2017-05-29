@@ -1,6 +1,5 @@
-/// ## Hover Shadow
+/// Hover Shadow
 /// Gives a shadow effect to an element when in hover status
-///
 /// @access public
 /// @param {Size} $shadowSize - the size of the shadow
 /// @param {Color} $shadowColor - the color of the shadow
@@ -28,9 +27,9 @@
 /// as seen on http://gsdk.creative-tim.com/
 /// @group components
 /// @link http://gsdk.creative-tim.com/
-@mixin card-up() {
+@mixin card-up($up:-10px) {
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-  @include prefix(transform, translateY(-10px));
+  @include prefix(transform, translateY($up));
 }
 
 
@@ -42,7 +41,7 @@
     box-shadow: 0 0.0625em 0.1875em 0 rgba( $shadow-color, 0.1), 0 0.5em 0 -0.25em shade( $card-color, 5%), 0 0.5em 0.1875em -0.25em rgba( $shadow-color, 0.1), 0 1em 0 -0.5em shade( $card-color, 10%), 0 1em 0.1875em -0.5em rgba( $shadow-color, 0.1);
 }
 
-///
+/// Center Shadow
 /// Create a shadow that centers itself around the element it is applied to
 /// @param      {size}  $blur    the third parameter of the box-shadow property
 /// @param      {color}  $color  the final value of the box-shadow property. Defines color
@@ -75,9 +74,9 @@
    @if ($relative-to-window) {  position: fixed;    }
    @else                     {  position: absolute; }
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
     z-index: $zindex;
 
     background: $color;

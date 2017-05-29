@@ -63,3 +63,20 @@
     min-height: 100%;
   }
 }
+
+/// Reset outline of bootstrap dont need to use it with any css scope 
+/// @example
+///   @include outline();
+@mixin outline($selector:"a,.btn",$outline:none){
+  #{$selector} { 
+    &:hover,
+    &:active,
+    &:focus,
+    &.active,
+    &.focus,
+    &.focus:active { outline: $outline; }
+    &.active {
+      &:focus,&.focus { outline: $outline; }
+    }
+  }
+}
