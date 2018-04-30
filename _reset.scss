@@ -21,6 +21,7 @@
 /// @param {Set of Strings} $states - the pseudoclasses the selector will be joined with in order to create the selector
 /// @group Resets
 /// @author Carlos Batman
+/// @deprecated use set-style-states instead
 /// @example
 ///   /* the rules will expand to a declaration
 ///    * containing '.hot-and-pink', '.hot-and-pink:hover',
@@ -32,6 +33,37 @@
 ///     }
 ///   }
 @mixin reset-style-states($states: 'hover' 'active' 'focus' 'visited') {
+  $selector: '&';
+
+  @each $state in $states {
+    $selector: $selector+',&:#{$state}';
+  }
+
+  #{$selector}{
+    @content
+  }
+}
+
+/// Set style states
+/// Applies all rules inside a declaration to its selector and to all
+/// combinations of it concatenated with items in a set of pseudoclasses.
+/// This set pseudoclasses is provided through a parameter.
+/// For each state provided, the mixin joins the ampersand with the psedoclass indicator ':'.
+/// They are then concatenated to the main selector by commas
+/// @param {Set of Strings} $states - the pseudoclasses the selector will be joined with in order to create the selector
+/// @group Resets
+/// @author Carlos Batman
+/// @example
+///   /* the rules will expand to a declaration
+///    * containing '.hot-and-pink', '.hot-and-pink:hover',
+///    * '.hot-and-pink:active', '.hot-and-pink:focus' and '.hot-and-pink:visited'
+///    */
+///   .hot-and-pink {
+///     @include reset-style-states {
+///       border-bottom: hotpink;
+///     }
+///   }
+@mixin set-style-states($states: 'hover' 'active' 'focus' 'visited') {
   $selector: '&';
 
   @each $state in $states {

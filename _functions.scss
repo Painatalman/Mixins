@@ -74,3 +74,10 @@
   #{$property}: ($sizeValue * 10) + px;
   #{$property}: $sizeValue + rem;
 }
+
+///Contains
+///Check if a list contains a specific item
+///@link https://github.com/sass/sass/issues/543#issuecomment-57293709
+@function contains($list, $value) {
+  @return (index($list, $value) == null);
+}
