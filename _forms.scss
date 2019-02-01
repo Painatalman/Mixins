@@ -56,7 +56,10 @@
 /// Input reset for number
 /// Removes those arrows from input elements of type 'number'
 /// @link https://css-tricks.com/snippets/css/turn-off-number-input-spinners/
+/// @link https://stackoverflow.com/questions/23372903/hide-spinner-in-input-number-firefox-29
 @mixin input-number-reset {
+  -moz-appearance:textfield;
+
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
